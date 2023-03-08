@@ -41,7 +41,7 @@ Luo transaktio jossa opintojakson esimerkkitietokannan http://netisto.fi/oppaat/
 1) cities-tauluun lisätään kaksi uutta kaupunkia yhdellä INSERT INTO -lauseella JA
 2) students-tauluun lisätään kaksi uutta opiskelijaa yhdellä INSERT INTO -lauseella, joiden studentID on virheellisesti sama
 
-![Harj8_pic4](screenshots/Harj8_pic4.png)
+![harj8_pic4](screenshots/harj8_pic4.png)
 
 ![Harj8_pic5](screenshots/Harj8_pic5.png)
 
@@ -56,15 +56,16 @@ Käytä luomaasi tallennettua proseduuria kutsumalla sitä CALL sp_fail;
 
 Palautuksesta tulee ilmetä, että kaupunkienkaan lisäys ei onnistunut, jos jonkun opiskelijan lisäys ei onnistunut.
 
+![Harj8_pic7](screenshots/Harj8_pic7.png)
  
-Tarkoituksella studenteissa virhe, 2011 id:llä on jo sama opiskelija
+### Tarkoituksella studenteissa virhe, 2011 id:llä on jo sama opiskelija
+ 
+![Harj8_pic8](screenshots/Harj8_pic8.png)
+ 
+ 
+ 
  
 0 rows affected
-
-
-
-
-
 
 
 
