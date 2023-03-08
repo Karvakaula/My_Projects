@@ -94,7 +94,7 @@
 
 ### C.	Hae opiskelijat, joiden veroprosentti on 0.00, 6.20 tai 7.30 (käytä IN-määrettä)
  
- ![pic18.png](screenshots/harj2/pic18png)
+ ![pic18.png](screenshots/harj2/pic18.png)
  
 ### D.	Hae opiskelijat, joiden kotikunta ei ole tiedossa (on NULL)
  
