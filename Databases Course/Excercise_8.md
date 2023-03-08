@@ -40,8 +40,12 @@ Luo transaktio jossa opintojakson esimerkkitietokannan http://netisto.fi/oppaat/
 
 1) cities-tauluun lisätään kaksi uutta kaupunkia yhdellä INSERT INTO -lauseella JA
 2) students-tauluun lisätään kaksi uutta opiskelijaa yhdellä INSERT INTO -lauseella, joiden studentID on virheellisesti sama
- 
- 
+
+![Harj8_pic4](screenshots/Harj8_pic4.png)
+
+![Harj8_pic5](screenshots/Harj8_pic5.png)
+
+![Harj8_pic6](screenshots/Harj8_pic6.png)
  
 
 ### TEHTÄVÄ 4 4/4P
@@ -64,22 +68,24 @@ Tarkoituksella studenteissa virhe, 2011 id:llä on jo sama opiskelija
 
 
 
-Execute:
-> SELECT * FROM cities
+| Execute:                                          |            |            |
+|---------------------------------------------------|------------|------------|
+| > SELECT * FROM cities                            |            |            |
+|                                                   |            |            |
+| + ----------- + ------------- + --------------- + |            |            |
+| cityID                                            | cityname   | population |
+| + ----------- + ------------- + --------------- + |            |            |
+| 1                                                 | Turku      | 190000     |
+| 2                                                 | Tampere    | 230000     |
+| 3                                                 | Lahti      | 120000     |
+| 4                                                 | Oulu       | 20200      |
+| 5                                                 | Pori       | 40000      |
+| 6                                                 | joensuu    | 202200     |
+| 7                                                 | Rautalampi | 222        |
+| NULL                                              | NULL       | NULL       |
+| + ----------- + ------------- + --------------- + |            |            |
+| 8 rows                                            |            |            |
 
-+ ----------- + ------------- + --------------- +
-| cityID      | cityname      | population      |
-+ ----------- + ------------- + --------------- +
-| 1           | Turku         | 190000          |
-| 2           | Tampere       | 230000          |
-| 3           | Lahti         | 120000          |
-| 4           | Oulu          | 20200           |
-| 5           | Pori          | 40000           |
-| 6           | joensuu       | 202200          |
-| 7           | Rautalampi    | 222             |
-| NULL        | NULL          | NULL            |
-+ ----------- + ------------- + --------------- +
-8 rows
 
 Niin kuin tulosteesta näkee vielä että uusia kaupunkeja ei lisätty.
 
