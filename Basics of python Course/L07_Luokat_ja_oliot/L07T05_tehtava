@@ -1,0 +1,14 @@
+from L07T05_kirjasto import Car
+
+car1=Car("Scoda","Octavia",3000)
+print("auto: ",car1)
+
+car2=Car("Audi","A4",4000)
+print("auto: ",car2)
+
+car3=Car("Volvo","V70",5000)
+print("auto: ",car3)
+
+total_price=car1.price+car2.price+car3.price
+
+print(f"Autojen hinta yhteensä: {total_price}€")
