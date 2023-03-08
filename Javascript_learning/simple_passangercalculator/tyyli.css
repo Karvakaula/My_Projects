@@ -1,0 +1,71 @@
+*{
+    margin:0;
+    
+}
+.page{
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: nowrap;
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+}
+#welcome-el{
+    font-size: 50px;
+    color: black;
+    height: 230px;
+    position: absolute;
+    top:5px;
+
+}
+.app{
+    padding:10px;
+    text-align: center;
+    border: 1px black solid;
+}
+h1{
+    font-size: 40px;
+
+
+}
+h2{
+    text-shadow: 0vh 0vh 1vh  red;
+    font-size: 40px;
+
+}
+button {
+    border:none;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    color:white;
+    font-weight: bold;
+    width:200px;
+    margin-bottom: 5px;
+    border-radius: 5px;
+
+}
+#increment-btn{
+    background-color: darkred;
+
+}
+#increment-btn:hover{
+    background-color: rgb(255, 88, 88);
+    cursor: pointer;
+}
+#save-btn{
+    background-color: aquamarine;
+
+}
+#save-btn:hover{
+    background-color: rgb(5, 255, 172);
+    cursor: pointer;
+}
+#reset-btn{
+    background-color: rgb(157, 157, 157);
+
+}#reset-btn:hover{
+    background-color: rgb(58, 58, 58);
+    cursor: pointer;
+}
