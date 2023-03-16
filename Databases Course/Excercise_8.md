@@ -48,7 +48,7 @@ Luo transaktio jossa opintojakson esimerkkitietokannan http://netisto.fi/oppaat/
 ![Harj8_pic6](screenshots/harj8/Harj8_pic6.png)
  
 
-### TEHTÄVÄ 4 4/4P
+## TEHTÄVÄ 4 4/4P
 
 Luo edellisen tehtävän transaktion yhteyteen sellainen sp_fail()-niminen tallennettu proseduuri (stored procedure), jota kutsuessa kaikki INSERT INTO-lauseet peruutetaan (ROLLBACK), jos yhdenkin suoritus epäonnistuu jostakin syystä. Jos kaikki INSERT INTO -lauseet ovat suoritettavissa, transaktio hyväksytään kokonaisuudessaan (COMMIT).
 
@@ -89,5 +89,52 @@ Palautuksesta tulee ilmetä, että kaupunkienkaan lisäys ei onnistunut, jos jon
 
 
 Niin kuin tulosteesta näkee vielä että uusia kaupunkeja ei lisätty.
+
+
+## Tehtävä5 
+
+### A) Luo kuvitteellista keskustelufoorumi-ohjemiston viestien tallentamista varten tietokannan taulu, jossa perusavaimena on juokseva numero (kokonaisluku). Muita kenttiä tulee olla ainakin viestin otsikkoa, kirjoittajaa ja sisältöä varten. Myös viestin lisäysajankohta tulee tallentaa. Lisäksi tulee olla INTEGER-tyyppinen "parent"-kenttä, joka kertoo numerollaan, minkä viestin vastaus se mahdollisesti on. "Parent"-kentän arvo asetetaan NULL, jos viesti on viestiketjun avaava viesti. "Parent"-kenttä tulee olla viiteavaimena taulun perusavaimelle.
+
+CREATE TABLE Messages(
+	messageID INT auto_increment PRIMARY KEY,
+    topic VARCHAR(64) NOT NULL,
+    user VARCHAR(15) NOT NULL,
+    content VARCHAR(255) NOT NULL,
+    posted TIMESTAMP NOT NULL DEFAULT now(),
+    parent INT DEFAULT NULL,
+		FOREIGN KEY (parent)
+        references Messages (messageID)
+)
+
+### B) Lisää tauluun sisältöä siten, että viestejä on vähintään kolmella tasolla kuten oheisessa esimerkissä. On siis keskustelun avaavia viestejä, niiden vastauksia ja vastauksien vastauksia. Lisättyjen viesttien ei tietenkään tarvitse olla oheisen esimerkin mukaisia
+
+INSERT INTO Messages(topic, user, content, parent) VALUES
+	("Ensimmäinen postaus :D", "käyttis1", "MEitsi oli eka :)", NULL),
+    ("Toka :DDD", "peke", "Mä olin toka", NULL),
+    ("vastaan sulle", "joniboi", "moikka", 2),
+    ("superii", "superdude","meitsi on iha super",2),
+    ("vastaan superdudelle", "superimpidude","meitsi on varmaa enemmä super",4),
+    ("poronkäristys appreciation post", "käristäjä","onko parempaa safkaa olemassa kuan poronkäristys? Tuskin",NULL),
+	("oon eri mieltä", "HKMIES", "on kyl varmasti parempaa HK sinine lenkki ku sinu käristys",6),
+    ("PYH", "käristäjä", "joudut kohta ite käristetyks",7);
+
+### C) Tee SQL-kysely, jolla haetaan kaikki ensimmäisen tason viestien vastaukset.
+
+Execute:
+> SELECT * 
+FROM Messages 
+Where parent IN 
+	(SELECT messageID FROM Messages WHERE parent IS NULL)
+
++ -------------- + ---------- + --------- + ------------ + ----------- + ----------- +
+| messageID      | topic      | user      | content      | posted      | parent      |
++ -------------- + ---------- + --------- + ------------ + ----------- + ----------- +
+| 3              | vastaan sulle | joniboi   | moikka       | 2023-03-13 10:26:36 | 2           |
+| 4              | superii    | superdude | meitsi on iha super | 2023-03-13 10:26:36 | 2           |
+| 7              | oon eri mieltä | HKMIES    | on kyl varmasti parempaa HK sinine lenkki ku sinu käristys | 2023-03-13 10:26:36 | 6           |
+| NULL           | NULL       | NULL      | NULL         | NULL        | NULL        |
++ -------------- + ---------- + --------- + ------------ + ----------- + ----------- +
+4 rows
+
 
 

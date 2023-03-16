@@ -1,93 +1,14 @@
-### Databases excersice 8 0/16P
+## Tietokannat harjoitus 4
 
-### Tehtävä1 
+### tehtävä1
 
-Luo sellainen triggeri opintojakson esimerkkitietokantaan http://netisto.fi/oppaat/tietokannat/?id=03, että yli miljoonan asukkaan kotikaupunkeja ei voi lisätä INSERT INTO -lauseella cities-tauluun.
+Tehtäväsi on jalostaa Kirpputori-tietokannan yllä esitetystä käsitemallin luonnoksesta EER-kaavio MySQL WorkBench -ohjelmalla. EER-kaaviosi tulee täydentää ja tarkentaa yllä kuvattua toimeksiantoa ja käsitemallin luonnosta seuraavasti
 
-Palautuksesta tulee ilmetä, että että yli miljoonan asukkaan kotikaupunkien lisäys ei onnistu.
-
-Poista luomasi triggeri sen toiminnan testauksen jälkeen.
-
-DELIMITER $$
-CREATE TRIGGER trigger1
-	BEFORE INSERT ON cities
-    FOR EACH ROW 
-BEGIN
-	IF ! (NEW.population > 1000000) THEN
-		CALL `Virhe: Ei voi lisätä yli miljoonan asukkaan kotikaupunkia`;
-	END IF;
-END $$
-
-INSERT INTO cities VALUES (5,"Kemi",1000000)
-
-Error Code: 1305. PROCEDURE AC7750_1.Virhe: Ei voi lisätä yli miljoonan asukkaan kotikaupunkia does not exist
-
-### TEHTÄVÄ2 2/2P
-Luo transaktio jossa opintojakson esimerkkitietokannan http://netisto.fi/oppaat/tietokannat/?id=03
-
-1) cities-tauluun lisätään kaksi uutta kaupunkia yhdellä INSERT INTO -lauseella JA
-2) students-tauluun lisätään kaksi uutta opiskelijaa yhdellä INSERT INTO -lauseella, joiden kotikuntana on jompikumpi kohdassa A) lisätyistä kotikaupungeista
-![Harj8_pic1](screenshots/Harj8_pic1.png)
-
-![Harj8_pic2](screenshots/Harj8_pic2.png)
-
-![Harj8_pic3](screenshots/Harj8_pic3.png)
- 
- 
-
-### TEHTÄVÄ 3 2/2P
-Luo transaktio jossa opintojakson esimerkkitietokannan http://netisto.fi/oppaat/tietokannat/?id=03
-
-1) cities-tauluun lisätään kaksi uutta kaupunkia yhdellä INSERT INTO -lauseella JA
-2) students-tauluun lisätään kaksi uutta opiskelijaa yhdellä INSERT INTO -lauseella, joiden studentID on virheellisesti sama
-
-![harj8_pic4](screenshots/harj8_pic4.png)
-
-![Harj8_pic5](screenshots/Harj8_pic5.png)
-
-![Harj8_pic6](screenshots/Harj8_pic6.png)
- 
-
-### TEHTÄVÄ 4 4/4P
-
-Luo edellisen tehtävän transaktion yhteyteen sellainen sp_fail()-niminen tallennettu proseduuri (stored procedure), jota kutsuessa kaikki INSERT INTO-lauseet peruutetaan (ROLLBACK), jos yhdenkin suoritus epäonnistuu jostakin syystä. Jos kaikki INSERT INTO -lauseet ovat suoritettavissa, transaktio hyväksytään kokonaisuudessaan (COMMIT).
-
-Käytä luomaasi tallennettua proseduuria kutsumalla sitä CALL sp_fail;
-
-Palautuksesta tulee ilmetä, että kaupunkienkaan lisäys ei onnistunut, jos jonkun opiskelijan lisäys ei onnistunut.
-
-![Harj8_pic7](screenshots/Harj8_pic7.png)
- 
-### Tarkoituksella studenteissa virhe, 2011 id:llä on jo sama opiskelija
- 
-![Harj8_pic8](screenshots/Harj8_pic8.png)
- 
- 
- 
- 
-0 rows affected
-
-
-
-| Execute:                                          |            |            |
-|---------------------------------------------------|------------|------------|
-| > SELECT * FROM cities                            |            |            |
-|                                                   |            |            |
-| + ----------- + ------------- + --------------- + |            |            |
-| cityID                                            | cityname   | population |
-| + ----------- + ------------- + --------------- + |            |            |
-| 1                                                 | Turku      | 190000     |
-| 2                                                 | Tampere    | 230000     |
-| 3                                                 | Lahti      | 120000     |
-| 4                                                 | Oulu       | 20200      |
-| 5                                                 | Pori       | 40000      |
-| 6                                                 | joensuu    | 202200     |
-| 7                                                 | Rautalampi | 222        |
-| NULL                                              | NULL       | NULL       |
-| + ----------- + ------------- + --------------- + |            |            |
-| 8 rows                                            |            |            |
-
-
-Niin kuin tulosteesta näkee vielä että uusia kaupunkeja ei lisätty.
-
+Kaaviostasi tulee löytyä vähintään 6 eri taulua
+Tarkenna ja tarvittaessa lisää tauluihin liittyviä tietoja (ominaisuuksia) edelleen siten, että ominaisuuksia on yhteen laskien vähintään 30kpl.
+Voit nimetä taulut ja ominaisuudet halutessasi uudelleen (esim. englanniksikin)
+EER-kaaviosi tulee kuvata myös kaikki tuotteen ja asiakkaan väliset yhteydet (myy/ostaa/varaa). Näin 6 taulun EER-kaaviosta tulisi löytyä lopulta vähintään 7; ehkä 8 eri yhteyttä.
+Perustele keskeiset käyttämäsi ratkaisut, voit liittää perustelut ytimekkäinä lauseina tekstinä kaavioon tai muulla valitsemallasi tavalla
+Tarkenna ja tarvittaessa muuta erityisesti käsitemalliluonnoksessa näkyviä alustavia yhteyksien lukumääräsuhteita (yksi-yhteen, yksi-moneen, moni-moneen) ja yhteyksien pakollisuuksia (esim. tuote on sijaittava aina tasan yhdellä pöydällä)
+Voit toteuttaa tehtävänannosta halutessasi vain ne osat, jotka osaat tai saat aikaan mielekkäällä työmäärällä ja merkitä tehtävästä sitten osapisteitä.
 
