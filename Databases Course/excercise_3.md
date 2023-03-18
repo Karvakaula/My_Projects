@@ -1,93 +1,72 @@
-### Databases excersice 8 0/16P
+# Harjoitus3
 
-### Tehtävä1 
+### Tehtävä1
 
-Luo sellainen triggeri opintojakson esimerkkitietokantaan http://netisto.fi/oppaat/tietokannat/?id=03, että yli miljoonan asukkaan kotikaupunkeja ei voi lisätä INSERT INTO -lauseella cities-tauluun.
+Suunnittele tietokantaratkaisu tämän opintojakson harjoitustehtävien palauttamiselle tarkoitetulle ScoreTronic-palvelulle. Opiskelijat palauttavat siis viikottain määrätyllä palautuspäivämäärällä kaikki tiettyyn (viikko)harjoitustehtäväsarjaan kuuluvat tehtävänsä. Harjoitustehtäväsarja koostuu useista harjoitustehtävistä mutta tietty harjoitustehtävä voi kuulua vain yhteen harjoitustehtäväsarjaan. Yksittäiselle harjoitustehtävälle on määritelty tehtävästä saatavat maksimipisteet. Palauttaessaan harjoitussarjaa opiskelija tekee jokaiselle tehtävälleen piste-ehdotuksen ja opettaja erikseen lopulta päättää opiskelijan saamat lopulliset tehtäväpisteet. Opiskelijasta tulee tietää ainakin opiskelijatunnus ja nimi.
 
-Palautuksesta tulee ilmetä, että että yli miljoonan asukkaan kotikaupunkien lisäys ei onnistu.
-
-Poista luomasi triggeri sen toiminnan testauksen jälkeen.
-
-DELIMITER $$
-CREATE TRIGGER trigger1
-	BEFORE INSERT ON cities
-    FOR EACH ROW 
-BEGIN
-	IF ! (NEW.population > 1000000) THEN
-		CALL `Virhe: Ei voi lisätä yli miljoonan asukkaan kotikaupunkia`;
-	END IF;
-END $$
-
-INSERT INTO cities VALUES (5,"Kemi",1000000)
-
-Error Code: 1305. PROCEDURE AC7750_1.Virhe: Ei voi lisätä yli miljoonan asukkaan kotikaupunkia does not exist
-
-### TEHTÄVÄ2 2/2P
-Luo transaktio jossa opintojakson esimerkkitietokannan http://netisto.fi/oppaat/tietokannat/?id=03
-
-1) cities-tauluun lisätään kaksi uutta kaupunkia yhdellä INSERT INTO -lauseella JA
-2) students-tauluun lisätään kaksi uutta opiskelijaa yhdellä INSERT INTO -lauseella, joiden kotikuntana on jompikumpi kohdassa A) lisätyistä kotikaupungeista
-![Harj8_pic1](screenshots/Harj8_pic1.png)
-
-![Harj8_pic2](screenshots/Harj8_pic2.png)
-
-![Harj8_pic3](screenshots/Harj8_pic3.png)
- 
- 
-
-### TEHTÄVÄ 3 2/2P
-Luo transaktio jossa opintojakson esimerkkitietokannan http://netisto.fi/oppaat/tietokannat/?id=03
-
-1) cities-tauluun lisätään kaksi uutta kaupunkia yhdellä INSERT INTO -lauseella JA
-2) students-tauluun lisätään kaksi uutta opiskelijaa yhdellä INSERT INTO -lauseella, joiden studentID on virheellisesti sama
-
-![harj8_pic4](screenshots/harj8_pic4.png)
-
-![Harj8_pic5](screenshots/Harj8_pic5.png)
-
-![Harj8_pic6](screenshots/Harj8_pic6.png)
- 
-
-### TEHTÄVÄ 4 4/4P
-
-Luo edellisen tehtävän transaktion yhteyteen sellainen sp_fail()-niminen tallennettu proseduuri (stored procedure), jota kutsuessa kaikki INSERT INTO-lauseet peruutetaan (ROLLBACK), jos yhdenkin suoritus epäonnistuu jostakin syystä. Jos kaikki INSERT INTO -lauseet ovat suoritettavissa, transaktio hyväksytään kokonaisuudessaan (COMMIT).
-
-Käytä luomaasi tallennettua proseduuria kutsumalla sitä CALL sp_fail;
-
-Palautuksesta tulee ilmetä, että kaupunkienkaan lisäys ei onnistunut, jos jonkun opiskelijan lisäys ei onnistunut.
-
-![Harj8_pic7](screenshots/Harj8_pic7.png)
- 
-### Tarkoituksella studenteissa virhe, 2011 id:llä on jo sama opiskelija
- 
-![Harj8_pic8](screenshots/Harj8_pic8.png)
- 
- 
- 
- 
-0 rows affected
+Tietokantaratkaisun avulla järjestelmästä voidaan saada tietoja mm. eri opiskelijoista, heidän tehtäväpalautuksistaan: millaisia piste-ehdotuksia he ovat tehneet ja miten opettaja on pisteitä hyväksynyt. Lisäksi pitää pystyä laskemaan yhteenveto kuinka monta prosenttia kaikista opintojakson maksimiharjoituspisteitä opiskelijalle on hyväksytty.
 
 
+Opiskelija
+•	Tunnus (PK)
+•	etunimi
+•	sukunimi
+•	puhnumero
 
-| Execute:                                          |            |            |
-|---------------------------------------------------|------------|------------|
-| > SELECT * FROM cities                            |            |            |
-|                                                   |            |            |
-| + ----------- + ------------- + --------------- + |            |            |
-| cityID                                            | cityname   | population |
-| + ----------- + ------------- + --------------- + |            |            |
-| 1                                                 | Turku      | 190000     |
-| 2                                                 | Tampere    | 230000     |
-| 3                                                 | Lahti      | 120000     |
-| 4                                                 | Oulu       | 20200      |
-| 5                                                 | Pori       | 40000      |
-| 6                                                 | joensuu    | 202200     |
-| 7                                                 | Rautalampi | 222        |
-| NULL                                              | NULL       | NULL       |
-| + ----------- + ------------- + --------------- + |            |            |
-| 8 rows                                            |            |            |
+Opintojaksot
+opintojakso id (PK)
+opettaja
+
+Opintojakson suoritus
+opiskelija id (PK)
+Opintojakson id(PK)
+maksimiharjoituspisteet
+arvosana
+
+Tehtäväsarja 
+opintojakso id
+tehtäväsarjan oppilaan pistearvio
+palautuspäivämäärä
+opettajan antama arvosana
+
+Tehtävä
+opiskelija id
+opiskelijan pistearvio
+
+![pic1.png](screenshots/harj3/pic1.png)
+
+## Tehtävä2 
+
+Suunnittele tietokantaratkaisu, jossa tietoa tallennetaan kalastajista ja heidän eri kalapaikoissa kalastamista kalasaaleistaan. Tietoa on kyettävä tallentamaan myös saalistetuista kalalajeista.
+
+Suunnittele tietokantaratkaisu siten, että jatkossa järjestelmästä voitaisiin saada ulos tietoja mm. eri kalastajista, heidän käyntilukumääristä eri kalapaikoissa, kalasaalismääristään, kalalajimääristään eri kalapaikoissa halutuilla aikaväleillä.
+
+Tehtävän tuloksena on toimeksiantoon KT3 liittyvien käsitteiden ja niiden välisten yhteyksien graafinen esitys eli käsitemalli sisältäen käsitteiden ominaisuudet ja purettuna moni moneen -yhteydet.
+Lisää syntyneseen käsitemalliisi keskeimmät (2-5kpl) käyttämäsi rajaukset ja pohdinnat tekstimuodossa tyyliin "kalareissu tehdään TASAN yhteen paikkaan" jne.
+
+Tässä tehtävässä on tärkeämpää tehdä itse jokin ehdotus käsitemalliksi ja perustella se rajauksin ja pohdinnoin kuin yrittää tehdä täydellistä ratkaisua. Esim. lisää vain tärkeimmät vaaditut ominaisuudet jne.
+
+EI PAKOLLINEN: Lisää malliisi merkinnät käsitteiden perus- ja viiteavaimille.
 
 
-Niin kuin tulosteesta näkee vielä että uusia kaupunkeja ei lisätty.
+Kalastaja
+ID (PK)
+Etunimi
+sukunimi
 
 
+Kalapaikka
+Kalapaikan tunnus
+
+Kalareissu
+Kalastaja ID
+Kalapaikan tunnus
+Päivämäärä
+
+Kala
+Kalastaja ID (PK)
+nostopaikka
+Laji
+Nostopäivä
+
+![pic2.png](screenshots/harj3/pic2.png)
