@@ -252,6 +252,20 @@ VALUES
 (9 ,1 ,30),
 (10 ,1 ,35);
 
+## Teimme pari viewiä
+
+CREATE VIEW mechanics AS
+SELECT id, firstname, lastname, phone, email, hiredate
+FROM employee
+WHERE jobtitle = 'Mekaanikko';
+
+
+CREATE VIEW items_under_100 AS
+SELECT id, price, name, type
+FROM item
+WHERE price < 100;
+
+
 ## Tehdään testi hakuja tietokannasta
 
 Execute:
@@ -276,6 +290,20 @@ Inner join car a
 + -------------- + ------- + --------- + ---------- +
 10 rows
 
+| Execute:                                                                               |           |          |            |                            |            |
+|----------------------------------------------------------------------------------------|-----------|----------|------------|----------------------------|------------|
+| > SELECT * FROM mechanics                                                              |           |          |            |                            |            |
+|                                                                                        |           |          |            |                            |            |
+| + ------- + -------------- + ------------- + ---------- + ---------- + ------------- + |           |          |            |                            |            |
+| id                                                                                     | firstname | lastname | phone      | email                      | hiredate   |
+| + ------- + -------------- + ------------- + ---------- + ---------- + ------------- + |           |          |            |                            |            |
+| 1                                                                                      | Eero      | Aho      | 0401111111 | eero.aho@example.com       | 2020-01-01 |
+| 2                                                                                      | Sari      | Saari    | 0502222222 | sari.saari@example.com     | 2020-02-02 |
+| 3                                                                                      | Antti     | Ahonen   | 0413333333 | antti.ahonen@example.com   | 2020-03-03 |
+| 4                                                                                      | Leena     | Lehtinen | 0514444444 | leena.lehtinen@example.com | 2020-04-04 |
+| 5                                                                                      | Markku    | Mäki     | 0425555555 | markku.maki@example.com    | 2020-05-05 |
+| + ------- + -------------- + ------------- + ---------- + ---------- + ------------- + |           |          |            |                            |            |
+| 5 rows                                                                                 |           |          |            |                            |            |
 
 
 ## UI:n luonti
