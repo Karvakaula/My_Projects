@@ -268,27 +268,29 @@ WHERE price < 100;
 
 ## Tehdään testi hakuja tietokannasta
 
-Execute:
-> SELECT c.firstname, a.id, a.make, a.model 
-FROM customer c
-Inner join car a
-	on a.customer_id = c.id
+| Execute:                                              |    |            |         |
+|-------------------------------------------------------|----|------------|---------|
+| > SELECT c.firstname, a.id, a.make, a.model           |    |            |         |
+| FROM customer c                                       |    |            |         |
+| Inner join car a                                      |    |            |         |
+| on a.customer_id = c.id                               |    |            |         |
+|                                                       |    |            |         |
+| + -------------- + ------- + --------- + ---------- + |    |            |         |
+| firstname                                             | id | make       | model   |
+| + -------------- + ------- + --------- + ---------- + |    |            |         |
+| Matti                                                 | 1  | Toyota     | Corolla |
+| Sanna                                                 | 2  | Volkswagen | Golf    |
+| Jari                                                  | 3  | Ford       | Focus   |
+| Liisa                                                 | 4  | Nissan     | Micra   |
+| Pekka                                                 | 5  | Honda      | Civic   |
+| Minna                                                 | 6  | Skoda      | Octavia |
+| Juha                                                  | 7  | Volvo      | V40     |
+| Anna                                                  | 8  | Hyundai    | i20     |
+| Timo                                                  | 9  | Kia        | Rio     |
+| Maria                                                 | 10 | Renault    | Clio    |
+| + -------------- + ------- + --------- + ---------- + |    |            |         |
+| 10 rows                                               |    |            |         |
 
-+ -------------- + ------- + --------- + ---------- +
-| firstname      | id      | make      | model      |
-+ -------------- + ------- + --------- + ---------- +
-| Matti          | 1       | Toyota    | Corolla    |
-| Sanna          | 2       | Volkswagen | Golf       |
-| Jari           | 3       | Ford      | Focus      |
-| Liisa          | 4       | Nissan    | Micra      |
-| Pekka          | 5       | Honda     | Civic      |
-| Minna          | 6       | Skoda     | Octavia    |
-| Juha           | 7       | Volvo     | V40        |
-| Anna           | 8       | Hyundai   | i20        |
-| Timo           | 9       | Kia       | Rio        |
-| Maria          | 10      | Renault   | Clio       |
-+ -------------- + ------- + --------- + ---------- +
-10 rows
 
 | Execute:                                                                               |           |          |            |                            |            |
 |----------------------------------------------------------------------------------------|-----------|----------|------------|----------------------------|------------|
