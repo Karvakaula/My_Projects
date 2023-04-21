@@ -1,0 +1,179 @@
+*{
+    margin:0;
+    padding:0;
+   
+}
+nav{
+    display: flex;
+    width: 100%;
+    height: 50px;
+    background-color: orange;
+    position: sticky;
+    justify-content: center;
+}
+nav ul{
+    display: flex;
+    padding:0;
+    list-style: none;
+    align-items: center;
+    
+}
+nav ul li{
+    display: inline-block;
+    font-size: 23px;
+    padding: 2px;
+    margin-right: 5px;
+    margin-left: 5px;
+    background: rgb(255, 255, 255);
+}
+nav a{
+    font-weight: bold;
+    text-decoration: none;
+    color: orange;
+}
+.options{
+    display: grid;
+    width: 100%;
+    height:500px;
+    place-items: center;
+    grid-template-rows: repeat(3, minmax(50px, 100px));
+}
+
+.child{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30%;
+    height: 20%;
+}
+.child button{
+    border: none;
+    padding: 15px;
+    background: orange;
+    font-size: large;
+    font-weight: bold;
+    border-radius: 10px;
+    width: 200px;
+}
+.child button:hover{
+    cursor: pointer;
+    background: rgb(252, 186, 63);
+}
+#frontpage{
+    display:grid;
+    height: 500px;
+    width: 100%;
+    place-content: center;
+    background-image: url("car.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    
+}
+#frontpage-shop{
+    display:grid;
+    height: 400px;
+    width: 100%;
+    place-content: center;
+}
+#shopitems{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 250px));
+    height: auto;
+    width: 100%;
+    grid-template-rows: repeat(auto-fit, minmax(180px, 200px));
+    gap:10px;
+    place-content: center;
+}
+#header{
+    width: 500px;
+    padding:20px;
+    border-radius: 0px 250px / 150px;
+    background-color: rgba(255, 153, 0, 0.839);
+}
+#header p{
+    margin-top:20px;
+    text-align: right;
+    font-size:20px;
+    font-style: italic;
+    color: white;
+}
+#header h1{
+    font-size: 50px;
+    color: white;
+}
+#formfield{
+    display: flex;
+    background-color: rgb(255, 252, 245);
+    height: 500px;
+    border-radius: 5px;
+    width: 500px;
+    align-items: center;
+    justify-content: left;
+}
+#formcontact{
+    
+    width: 100%;
+    padding: 10px;
+    color:rgb(255, 166, 0);
+}
+#formcontact p{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-weight:bold;
+    font-size: 25px;
+}
+#formcontact input{
+    margin: 10px;
+    padding:3px;
+    margin-right:0%;
+    height: 25px;
+    border: none;
+    background: rgba(255, 166, 0, 0.87);
+    border-radius: 5px;
+    width: 50%;
+
+}
+#Submit{
+    padding: 10px;
+    border:none;
+    background-color: rgba(255, 166, 0, 0.87);
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+}
+#Submit:hover{
+    cursor: pointer;
+    background-color: rgba(252, 210, 132, 0.87);
+}
+.inputs{  
+    display: flex;
+    place-content: center;
+    height:70%;
+    top:200px;
+    
+}
+#products{
+    background-color: aliceblue;
+}
+.item{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding:10px;
+    border: 3px rgb(255, 255, 255) solid;
+    height: 100px;
+    background-color: orange;
+}
+.item li{
+    list-style: none;
+    padding:none;
+}
+.item button{
+    bottom:0;
+    font-weight: bold;
+
+    border:none;
+    padding:7px;
+}
