@@ -1,0 +1,64 @@
+/* About.css */
+
+#about {
+    text-align: center;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    background-color: #011C27;
+    min-height: 300px;
+    align-items: center;
+    position: relative;
+  }
+  
+  .button-container {
+   
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    align-items: center;
+    
+  }
+  
+  .tab-button {
+    color: #62BEC1;
+    border: none;
+    padding: 10px 20px;
+    margin: 0 10px;
+    cursor: pointer;
+    font-size: 16px;
+    background: none;
+    border-bottom: 2px solid transparent;
+    transition: border-bottom-color 0.3s ease;
+  
+    &:hover {
+        border-bottom-color: #D81159;
+      }
+    
+    &.active {
+        border-bottom-color :#D81159;
+    }
+  }
+  
+  .content {
+    font-size: 18px;
+    line-height: 1.6;
+    width: 60%;
+    text-align: left;
+    padding:10px;
+    height: auto;
+    color:#62BEC1;
+  }
+  
+  @media screen and (max-width: 600px) {
+    .button-container {
+      flex-direction: row;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+  
+    .tab-button {
+      margin: 5px 0;
+    }
+  }
+  

@@ -1,0 +1,10 @@
+/* ProjectsGrid.css */
+
+#projects {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+  padding: 30px;
+  background-color: #011C27;
+  min-height: 700px;
+}

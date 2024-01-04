@@ -1,0 +1,30 @@
+#nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    width: 100%;
+    padding: 10px;
+    position: fixed;
+    top: 0;
+    z-index: 1000; /* To ensure the navbar is above other elements */
+    background-color: #011c27c1; /* Optionally set a background color */
+    
+}
+
+#nav button {
+    padding: 5px;
+    background: none;
+    border: none;
+    color: #62BEC1;
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    transition: border-bottom-color 0.3s ease;
+
+    &:hover {
+        border-bottom-color: #D81159;
+      }
+      
+    &.active{
+        border-bottom-color: #D81159;
+    }
+}

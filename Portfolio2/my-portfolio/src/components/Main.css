@@ -1,0 +1,26 @@
+.main {
+    max-width: 70%; /* Adjust as needed */
+    margin: auto;
+    
+    box-sizing: border-box;
+    background-color:#011C27 ;
+    height: auto;
+    position: relative; /* Position relative for absolute positioning of gradient border */
+    overflow: hidden; /* Ensure the gradient border does not overflow content */
+    
+    /*border-image: linear-gradient(to bottom, #5e61ff, #75DDDD, #004346);
+    border-image-slice: 1;
+    animation: gradientAnimation 6s infinite linear; 
+    box-shadow: -20px 0 20px #5e61ff; */
+}
+  
+  @keyframes gradientAnimation {
+    0%, 100% {
+      border-image-source: linear-gradient(to top, #5e61ff, #75DDDD, #004346);
+      box-shadow: -20px 0 20px rgba(31, 171, 137, 0.7);
+    }
+    50% {
+      border-image-source: linear-gradient(to bottom, #5e61ff, #75DDDD, #004346);
+      box-shadow: -20px 0 20px #5e61ff;
+    }
+  }
