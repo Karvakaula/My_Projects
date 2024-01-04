@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BookReviewPage</title>
+    <link rel="stylesheet" href="reviewstyle.css">
+    <script src="https://kit.fontawesome.com/6d22c750f7.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital@0;1&display=swap" rel="stylesheet">
+</head>
+<body onload="init()">
+    <nav class="navbar">
+        <ul>
+            <li><a href="http://127.0.0.1:5500/Harjoitusty%C3%B6/bookreview/client/index.html">Home</a></li>
+            <p id="welcomeTxt" style="display: none;"></p>
+            <div id="usrcontrols">
+                <button id="LoginBtn" onclick="toggleForm('loginForm')"> 
+                    <i class="fa-regular fa-user fa-xl"></i>
+                </button>
+                <!-- uloskirjaus nappi mikäli kirjautunut sisään -->
+                <button id="logoutBtn" style="display: none;" onclick="logoutUser()">Logout</button>
+            </div>
+            </ul>
+    </nav>
+    <div class="book-info">
+        <p id="infoText"></p>
+        <div id="header">
+            <h1 id ="bookname"></h1>
+        </div>
+        <p id="infoText2" style="display: none; font-size: larger;"> Log in to comment</p>
+    </div>
+    <div id="popupForm">
+        <span class="fa-regular fa-circle-xmark" id="closeForm"></span>
+        <div class="form-container">
+            <!-- rekisteröinti formi  -->
+            <form id="registerForm">
+                <p id="errorfield1"></p>
+                Username: <input type="text" id="username" name="username"><br>
+                Email: <input type="text" id="email" name="email"><br>
+                Password: <input type="password" id="passwd" name="passwd"><br>
+                Re-enter Password: <input type="password" id="passwd2" name="passwd"><br>
+                <p id="errorfield2"></p>
+                <button id="register">Register</button>
+                <button id="toggleFormBtn" onclick="toggleForm('loginForm', event)">Already a user? Login</button>
+            </form>
+  
+            <!-- kirjautumis formi -->
+            <form id="loginForm">
+                <p id="errorfield1L"></p>
+                email <input type="text" id="emailLogin" name="email"><br>
+                <p id="errorfield2L"></p>
+                Password: <input type="password" id="passwdLogin" name="passwd"><br>
+                
+                <button id="Login">Login</button>
+                <button id="toggleFormBtn2" onclick="toggleForm('registerForm', event)">Not registered? Register</button>
+            </form>
+            <form id="userForm">
+                <p id="UserField" style="color:wheat"></p>
+                <!-- Tänne voisi laittaa esim profiilin muokkausta, inforteksti jne-->
+                
+            </form>
+        </div>
+      </div>
+    <section id="comment-section">
+        <form id="usrform">
+            
+            <input type="hidden" id="name" name="usrname" value="">
+            <br>
+            <label for="rating">Rate this book (0-5):</label>
+            <input type="number" id="rating" name="rating" min="0" max="5" step="0.5" required><br>
+            <textarea rows="4" cols="50"  id="comment" name="comment" form="usrform" placeholder="Enter text here..."></textarea><br>
+            <button id="submit-button" onclick="post(event)"type="submit">Submit</button>
+        </form>
+          
+
+    </section>
+    <section id="review-section">
+        
+
+
+    </section>
+    
+</body>
+<script src="reviews.js"></script>
+</html>

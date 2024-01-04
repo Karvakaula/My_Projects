@@ -1,0 +1,310 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+    font-family: 'playfair display', sans-serif;
+}
+/* #b05c28c7  vanha väri*/
+body {
+    background-color: #e6d2b0;
+    /*background:url(cloudy.png) repeat-x 0 0;
+    background-position: center; /* Center the background image 
+    background-size: cover ; */
+    
+}
+#profile-picture-container {
+    width: 40px; /* Adjust the width and height as needed */
+    height: 40px;
+    border-radius: 50%; /* This creates a circular shape */
+    overflow: hidden; /* Ensure the picture stays within the circular container */
+    background-color: #ddd; /* Add a background color or border if you want */
+  }
+  
+  #profile-picture-container img {
+    width: 100%; /* Make the image fill the container */
+    height: auto; /* Maintain the aspect ratio */
+    display: block; /* Remove any extra space below the image */
+  }
+  
+/* animaatioita */
+@keyframes pulsate2 {
+    0% {
+        box-shadow:0 0 15px #333;
+    }
+    50% {
+        box-shadow:0 0 15px rgba(1, 255, 242, 0.969);
+    }
+    100% {
+        box-shadow:0 0 15px #333;
+    }
+}
+@keyframes pulsate {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+.navbar {
+    background-color: #528073af;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    height: auto;
+    color:white;
+}
+
+.navbar ul {
+    list-style-type: none;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap; /* Allow items to wrap to the next line */
+    height: 100%;
+    align-items: center;
+}
+.navbar ul li{
+    display: block;
+    background-color: #fff;
+    padding:6px;
+    text-align: center;
+    width: 150px;
+    border-radius: 15px;
+    margin: 5px; 
+}
+.navbar ul li:hover{
+    background-color: #00000055;
+    cursor: pointer;
+}
+.navbar button {
+    display: block;
+    background-color:#fff;
+    padding:10px;
+    height: auto;
+    text-align: center;
+    width: auto;
+    border-radius: 15px;
+    border:none;
+    color:#528073af;
+}
+.navbar button:hover{
+    cursor: pointer;
+    background-color: #00000055 ;
+}
+.navbar a {
+    text-decoration: none;
+    font-weight: bold;
+    color:#528073af;
+}
+#usrcontrols{
+    display:flex;
+    width: auto;
+    padding:1px;
+}
+#searchEl{
+    padding:10px;
+    border-radius: 5px;
+    transition: box-shadow 1s, transform 1s;
+    width: 300px;
+    border: #528073 2px solid;
+    box-shadow:0 0 15px #333;
+    
+}
+
+
+
+#searchEl:focus{
+    animation: pulsate2 1.5s infinite;
+    
+}
+#searchblock{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: center;
+    height:auto;
+    
+}
+
+#popupForm.visible {
+    opacity: 1;
+    z-index: 1;
+  }
+#popupForm,
+#popupFormLogin {
+    position: fixed;
+    background-color: #528073;
+    padding: 5px;
+    border: 3px solid #6ca99898;
+    border-radius: 10px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    z-index: -1;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+#popupFormLogin.visible {
+    opacity: 1;
+    z-index: 1;
+}
+#userForm {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    
+}
+#loginForm {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+}
+
+#popupForm button {
+    background-color: #fff;
+    color: #476e63b5;
+    padding: 10px;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    margin-top: 10px;
+    padding:5px;
+}
+
+#loginForm button:hover,
+#popupForm button:hover {
+    background-color: #75968d92;
+    color: #fff;
+}
+#logandreg{
+    display: flex;
+    gap: 10px;;
+}
+#logandreg button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 20px;
+    color: #B05C28;
+}
+
+#logandreg button:hover {
+    color: #00000055;
+}
+
+.form-container {
+    padding:20px;
+    width: 300px;
+    max-width: 100%;
+}
+.form-container input{
+    margin: 5px;
+}
+#closeForm:hover{
+    cursor: pointer;
+    font-weight: bold;
+}
+#closeFormLogin:hover{
+    cursor: pointer;
+    font-weight: bold;
+}
+#registerForm{
+    display: none;
+    flex-direction: column;
+    align-items: center;
+}
+.logo-container {
+   
+    height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    /*background:url(Logo2.png) repeat-x 0 0;
+    background-position: center;
+    background-size: cover ; */
+}
+
+.logo-container h1 {
+    font-size: 36px;
+    color: #333;
+    
+}
+
+/* Style the book grid */
+#book-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 20px;
+    padding: 3vw;
+    margin: 4vh auto;
+    max-width:80%;
+    background-color:#476e6371;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.book-item {
+    background-color:#3b5b527c;
+    padding: 2vw;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.356);
+    text-align: left;
+    transition: box-shadow 1s, transform 1s;
+    border: 3px solid rgba(73, 117, 96, 0.644);
+    color:#fff;
+}
+.book-item:hover{
+    cursor: pointer;
+    box-shadow: 0 0 15px rgba(1, 255, 242, 0.969), 0 0 30px rgba(0, 0, 0, 0.2);
+    transform: scale(1.05);
+    animation: pulsate 1.5s infinite;
+}
+
+.book-item img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+}
+#infoText{
+    display: block;
+    position: relative;
+    top:10px;
+}
+
+
+#header{
+    background-color: #b05c283a;
+    border-radius: 10px;
+    padding:15px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+
+
+@media screen and (max-width: 480px) {
+    /* Styles for screens with a maximum width of 480px */
+    #book-grid {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    }
+
+    .book-item {
+        padding: 2vw;
+    }
+    .navbar ul {
+        flex-direction: row; /* Stack items vertically on smaller screens */
+        
+    }
+
+    .navbar ul li {
+        width: auto; /* Take up full width on smaller screens */
+    }
+}

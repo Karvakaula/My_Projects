@@ -1,0 +1,12 @@
+GET http://localhost:3000/books/Humiseva Harju
+
+
+
+
+POST http://localhost:3000/users/register
+Content-Type: application/json
+{
+    "username": "testdude2",
+    "email": "testeri3",
+    "password": "salasana"
+}

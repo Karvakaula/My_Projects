@@ -1,0 +1,1 @@
+DELETE http://localhost:3000/books/books/Testi Kirja/reviews/655526f97d0ed5195c8c62c7

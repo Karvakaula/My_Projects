@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BookReview</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://kit.fontawesome.com/6d22c750f7.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital@0;1&display=swap" rel="stylesheet">
+</head>
+
+<body onload="init()">
+    <nav class="navbar">
+        <ul>
+          <li><a href="#">Koti</a></li>
+          <p id="welcomeTxt" style="display: none;"></p>
+          <div id="usrcontrols">
+            <button id="RegisterBtn" onclick="toggleForm('registerForm', event)">
+                <i class="fa-regular fa-user fa-xl"></i>
+            </button>
+            <button id="logoutBtn" style="display: none;" onclick="logoutUser()">Log out</button>
+            <div id="profile-picture-container">
+                <!-- The profile picture will be displayed here -->
+            </div>
+        </div>
+        
+        </ul>
+    </nav>
+
+    <!-- Logo Container jos olisi logo tms header tässä-->
+    <div class="logo-container">
+        <h1 style="color:#476e63a9">books</h1>
+        <p id="infoText"></p>
+        
+    </div>
+    <!--Rekisteröinti formi-->
+    <div id="popupForm">
+      <span class="fa-regular fa-circle-xmark" id="closeForm"></span>
+      <div class="form-container">
+          <!-- Registration formi -->
+          <form id="registerForm">
+              <p id="errorfield1"></p>
+              Username: <input type="text" id="username" name="username"><br>
+              Email: <input type="text" id="email" name="email"><br>
+              Password: <input type="password" id="passwd" name="passwd"><br>
+              Re-enter Password: <input type="password" id="passwd2" name="passwd"><br>
+              <p id="errorfield2"></p>
+              <button id="register">Register</button>
+              <button id="toggleFormBtn" onclick="toggleForm('loginForm', event)">Already a user? Login</button>
+          </form>
+
+          <!-- Login formi -->
+          <form id="loginForm">
+              <p id="errorfield1L"></p>
+              email <input type="text" id="emailLogin" name="email"><br>
+              <p id="errorfield2L"></p>
+              Password: <input type="password" id="passwdLogin" name="passwd"><br>
+              
+              <button id="Login">Login</button>
+              <button id="toggleFormBtn2" onclick="toggleForm('registerForm', event)">Not registered? Register</button>
+          </form>
+          <form id="userForm">
+            <p id="UserField"></p>
+            <!-- Tänne voisi laittaa esim profiilin muokkausta, infoteksti jne-->
+            <!-- tällä hetkellä hieman siis turha, voisi korvata myös kokonaan 
+            jollain dropdown menulla tms-->
+            <form id="profilePictureForm" enctype="multipart/form-data">
+                <input type="file" name="profilePicture" accept="image/*" />
+                <button type="submit">Upload Profile Picture</button>
+              </form>
+            </form>
+      </div>
+    </div>
+      
+    </div>
+    <div id ="searchblock">
+        <input list="resultbooks" id="searchEl" onkeyup="searchfunc()" placeholder="search" >
+    </div>
+    <datalist id="resultbooks">
+        
+    </datalist>
+    <!-- Gridi kirjoille -->
+    <div id="book-grid">
+        
+        
+    </div>
+    
+</body>
+<script src="script.js"></script>
+</html>
