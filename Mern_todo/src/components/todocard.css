@@ -1,0 +1,74 @@
+.todo-card {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    border: 2px solid beige;
+    width: 240px;
+    height: 300px; /* Add your desired fixed height */
+    overflow: hidden; /* This will hide any content exceeding the height */
+    border-radius: 15px;
+    box-shadow: 0 4px 8px 5px rgba(0, 0, 0, 0.1);
+    margin: 20px;
+    background-color:#96E6B3;
+  }
+ 
+  .deadline-text{
+
+  }
+  .date{
+
+  }
+  .weekfromdeadline{
+    border: 2px solid beige;
+    
+    background-color: #faef7c;
+  }
+  .near-deadline{
+    
+    border: 2px solid beige;
+    background-color: #C94545;
+    .description{
+      background-color: white;
+    }
+  }
+  .late{
+    background-color: #353831;
+    color:white;
+    border:2px #C94545 solid;
+    .description{
+      background-color: #C94545;
+    }
+  }
+  .description {
+    overflow-y: auto; /* Enable vertical scrolling */
+    min-height: 30px; 
+    border:2px solid #a69ee4;
+    text-align: left;
+    padding:5px;
+    border-radius: 15px;
+    width: 80%;
+    background-color: #BEB8EB;
+  }
+  .delBtn{
+    position: absolute;
+    width: 10px;
+    &:hover{
+      cursor: pointer;
+      font-weight: bolder;
+
+    }
+  }
+  .Completed{
+    border:3px green solid;
+    background-color: #53A2BE;
+    .description{
+      background-color: white;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    #todoList {
+      grid-template-columns: repeat(auto-fill, minmax(100%, 1fr));
+    }
+  }
+  

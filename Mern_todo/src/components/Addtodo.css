@@ -1,0 +1,47 @@
+#AddForm {
+    width: 250px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    border: 2px solid #53A2BE;
+    gap: 10px;
+    padding: 15px;
+    border-radius: 10px;
+    background-color: #c6c0f8;
+  }
+  
+  #addBtn {
+    border-radius: 5px;
+    padding: 8px;
+    background-color: #53A2BE;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  #AddForm button:hover {
+    background-color: #428097;
+  }
+  
+  input {
+    background-color: #e0f7fa;
+    border: 2px solid #53A2BE;
+    padding: 5px;
+    border-radius: 5px;
+    width: 80%;
+    color:black;
+  }
+  textarea{
+    background-color: #e0f7fa;
+    border: 2px solid #53A2BE;
+    padding: 5px;
+    border-radius: 5px;
+    width: 80%;
+    color:black;
+  }
+  .react-date-picker, .react-date-picker *, .react-date-picker *:before, .react-date-picker *:after{
+
+    background-color: #e0f7fa;
+  }
+  
