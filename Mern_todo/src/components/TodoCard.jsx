@@ -48,11 +48,15 @@ const TodoCard = ({ todo, onDelete, onComplete }) => {
   };
   const handleDelete = async () => {
     try {
+      const userConfirmed = window.confirm(`Are you sure you want to delete ${todo.title}?`);
+    
+    if (userConfirmed) {
       // Send a DELETE request to your server's endpoint with the todo ID
       await axios.delete(`http://localhost:3001/api/todos/${todo._id}`);
-
       // Call the onDelete function to update 
       onDelete(todo._id);
+    }
+      
     } catch (error) {
       console.error('Error deleting todo:', error);
     }
