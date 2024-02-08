@@ -19,3 +19,5 @@
 ### filtering todos according to deadline
 
 ### better todo boxes and prettier colors :D
+
+### you can create a ul for each day. then the ul contains todo/deadline cards, you can drag and drop the cards 

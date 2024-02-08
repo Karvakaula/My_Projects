@@ -6,17 +6,17 @@ import './todocard.css';
 const TodoCard = ({ todo, onDelete, onComplete }) => {
   const [timeRemaining, setTimeRemaining] = useState('');
   const [isDone, setIsDone] = useState(todo.completed);
+  const [isExpanded, setIsExpanded] = useState(false);
 
   const calculateTimeRemaining = () => {
-    const now = moment(); // now
-    const deadline = moment(todo.deadline); // deadline 
-    const duration = moment.duration(deadline.diff(now)); // difference between now and deadline
+    const now = moment(); 
+    const deadline = moment(todo.deadline); 
+    const duration = moment.duration(deadline.diff(now)); 
 
-    const days = Math.floor(duration.asDays()); // days between now and deadline
-    const hours = duration.hours(); // hours between now and deadline
-    const minutes = duration.minutes(); // minutes between now and deadline
+    const days = Math.floor(duration.asDays());
+    const hours = duration.hours(); 
+    const minutes = duration.minutes()
 
-      // conditions for time displaying, days? hours? minutes?
     if (days > 0) {
       setTimeRemaining(`${days}d ${hours}h ${minutes}m`);
     } else if (hours > 0) {
@@ -29,7 +29,6 @@ const TodoCard = ({ todo, onDelete, onComplete }) => {
   useEffect(() => {
     calculateTimeRemaining();
 
-    // Update the timer every minute
     const timerInterval = setInterval(calculateTimeRemaining, 60000);
 
     return () => {
@@ -46,30 +45,35 @@ const TodoCard = ({ todo, onDelete, onComplete }) => {
       console.error('Error updating todo:', error);
     }
   };
+
   const handleDelete = async () => {
     try {
       const userConfirmed = window.confirm(`Are you sure you want to delete ${todo.title}?`);
-    
-    if (userConfirmed) {
-      // Send a DELETE request to your server's endpoint with the todo ID
-      await axios.delete(`http://localhost:3001/api/todos/${todo._id}`);
-      // Call the onDelete function to update 
-      onDelete(todo._id);
-    }
-      
+
+      if (userConfirmed) {
+        
+        await axios.delete(`http://localhost:3001/api/todos/${todo._id}`);
+       
+        onDelete(todo._id);
+      }
+
     } catch (error) {
       console.error('Error deleting todo:', error);
     }
   };
-  
+
+  const toggleExpand = () => {
+    setIsExpanded(!isExpanded);
+  };
+
   const isDeadlineNear = (deadline) => {
-    const currentDate = moment(); // Lets take current time
-    const deadlineDate = moment(deadline); // deadline 
+    const currentDate = moment(); 
+    const deadlineDate = moment(deadline); 
 
     const isLate = deadlineDate.isBefore(currentDate);
     const isNear = Math.abs(deadlineDate.diff(currentDate, 'milliseconds')) < 24 * 60 * 60 * 1000 && !isLate; // lets count if deadline is 24h from current
     const isWithinWeek = deadlineDate.isSameOrBefore(moment().add(7, 'days')) && !isNear && !isLate; // letts see if deadline is within week AND isNear = false
- 
+
     return { near: isNear, withinWeek: isWithinWeek, late: isLate };
   };
 
@@ -77,23 +81,27 @@ const TodoCard = ({ todo, onDelete, onComplete }) => {
   const { near, withinWeek, late } = isDeadlineNear(todo.deadline);
 
   return (
-    <div className={`todo-card ${near ? 'near-deadline' : ''} ${withinWeek ? 'weekfromdeadline' : ''} ${late && !todo.completed ?  'late' : ''} ${todo.completed ? 'Completed' : ''}`}>
-      <span className='delBtn' onClick={() => handleDelete(todo.id)} >X</span>
-      {(near || withinWeek || late) && (
-        <p className="deadline-text">
-          {near ? 'DEADLINE SOON!!' : ''} {late && !todo.completed ? 'late' : ''} {todo.completed ? 'Completed': ' '} {withinWeek && !todo.completed ? 'One week or less till deadline' : ''}
-        </p>
+    <div id={todo._id} onClick={toggleExpand} className={`todo-card ${near ? 'near-deadline' : ''} ${withinWeek ? 'weekfromdeadline' : ''} ${late && !todo.completed ? 'late' : ''} ${todo.completed ? 'Completed' : ''} ${isExpanded ? 'expanded' : ''}`}>
+      <div className="header" onClick={toggleExpand}>
+        <h3 className='title'>{todo.title}</h3>
+        <span className='timer'>{timeRemaining}</span>
+      </div>
+      {isExpanded && (
+        <div className="details">
+          {(near || withinWeek || late) && (
+            <p className="deadline-text">
+              {near ? 'DEADLINE SOON!!' : ''} {late && !todo.completed ? 'late' : ''} {todo.completed ? 'Completed' : ' '} {withinWeek && !todo.completed ? 'One week or less till deadline' : ''}
+            </p>
+          )}
+          <div className="description">{todo.description}</div>
+          <label>
+            Done:
+            <input type="checkbox" checked={isDone} onChange={handleCheckboxChange} />
+          </label>
+          <span className='date'>{formattedDeadline}</span>
+        </div>
       )}
-      <h3 className='title'>{todo.title}</h3>
-      <div className="description">{todo.description}</div>
-      <label>
-        Done:
-        <input type="checkbox" checked={isDone} onChange={handleCheckboxChange} />
-      </label>
-      <span className='date'>{formattedDeadline}</span>
-      
-          {timeRemaining && <p className="timer">{timeRemaining}</p>}
-
+      <span className='delBtn' onClick={() => handleDelete(todo.id)}>X</span>
     </div>
   );
 };

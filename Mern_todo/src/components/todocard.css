@@ -4,20 +4,32 @@
     padding: 10px;
     border: 2px solid beige;
     width: 240px;
-    height: 300px; /* Add your desired fixed height */
+    height: 100px; /* Add your desired fixed height */
     overflow: hidden; /* This will hide any content exceeding the height */
     border-radius: 15px;
     box-shadow: 0 4px 8px 5px rgba(0, 0, 0, 0.1);
-    margin: 20px;
     background-color:#96E6B3;
+    transition:all 1s ease-in;
   }
  
-  .deadline-text{
-
-  }
-  .date{
-
-  }
+.expanded{
+  display: flex;
+    flex-direction: column;
+    padding: 10px;
+    border: 2px solid beige;
+    width: 240px;
+    height: 250px; /* Add your desired fixed height */
+    overflow: hidden; /* This will hide any content exceeding the height */
+    border-radius: 15px;
+    box-shadow: 0 4px 8px 5px rgba(0, 0, 0, 0.1);
+    background-color:#96E6B3;
+    transition:all 1s ease-in;
+}
+.details{
+  display: flex;
+  flex-direction: column;
+  transition:all 1s ease-in;
+}
   .weekfromdeadline{
     border: 2px solid beige;
     

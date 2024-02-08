@@ -6,7 +6,11 @@ const TodoSchema = new mongoose.Schema(
         title: { type: String, required: true },
         description: { type: String},
         deadline: { type: Date },
-        completed:{ type: Boolean, required: true}
+        completed:{ type: Boolean, required: true},
+        list: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'List'
+        }
 
     }
 );

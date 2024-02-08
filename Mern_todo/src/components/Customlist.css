@@ -1,0 +1,8 @@
+.List{
+    background-color: #aca4e4bb;
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+    margin:0;
+    width: 300px;
+  }
