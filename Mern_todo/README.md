@@ -8,6 +8,8 @@
 
 ### colors change if dealine is 1 week from now, tomorrow, or late. also completed has different colour
 
+### Added Dnd feature. you can now change the orded of todos in the list
+
 ![current status](image.png)
 
 ## upcoming features list
@@ -19,5 +21,3 @@
 ### filtering todos according to deadline
 
 ### better todo boxes and prettier colors :D
-
-### you can create a ul for each day. then the ul contains todo/deadline cards, you can drag and drop the cards 

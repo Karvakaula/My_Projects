@@ -41,9 +41,10 @@ router.get('/todos', async (req, res) => {
 });
 router.post('/todos/reorder', async (req, res) => {
     try {
+    
       const { newOrder } = req.body;
       console.log(newOrder)
-      // Update todo positions in the database based on the new order
+
       for (let i = 0; i < newOrder.length; i++) {
         await Todo.findByIdAndUpdate(newOrder[i], { position: i + 1 });
         console.log(Todo)

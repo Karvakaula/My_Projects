@@ -23,7 +23,7 @@ const TodoComponent = ({ onAddTodo }) => {
       onAddTodo(response.data);
 
       setNewTodo({
-        // reset fields
+    
         title: '',
         description: '', 
         deadline: null,

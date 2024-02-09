@@ -10,7 +10,6 @@ import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 const TodoList = () => {
   const [todos, setTodos] = useState([]);
   const onDragEnd = async (result) => {
-    // Reorder todos in the frontend
     if (!result.destination) return;
     const newTodos = Array.from(todos);
     const [reorderedTodo] = newTodos.splice(result.source.index, 1);

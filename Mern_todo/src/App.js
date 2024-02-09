@@ -19,7 +19,6 @@ const App = () => {
     fetchTodos();
   }, []);
   const handleAddTodo = (deletedTodoId) => {
-        // Update the todos state with the new todo
     setTodos((prevTodos) => prevTodos.filter((todo) => todo._id !== deletedTodoId));
   };
 
