@@ -8,9 +8,11 @@
 
 ### colors change if dealine is 1 week from now, tomorrow, or late. also completed has different colour
 
-### Added Dnd feature. you can now change the orded of todos in the list
+### Added Dnd feature. you can now change the orded of todos in the list¨
 
-![current status](image.png)
+![status](image-2.png)
+
+![drag](image-1.png)
 
 ## upcoming features list
 
