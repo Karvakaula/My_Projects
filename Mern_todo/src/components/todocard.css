@@ -1,9 +1,9 @@
 .todo-card {
     display: flex;
     flex-direction: column;
-    padding: 10px;
+    padding: 5px;
     border: 2px solid beige;
-    width: 240px;
+    width: 100%;
     height: 100px; /* Add your desired fixed height */
     overflow: hidden; /* This will hide any content exceeding the height */
     border-radius: 15px;
@@ -15,19 +15,21 @@
 .expanded{
   display: flex;
     flex-direction: column;
-    padding: 10px;
+    padding: 5px;
     border: 2px solid beige;
-    width: 240px;
-    height: 250px; /* Add your desired fixed height */
-    overflow: hidden; /* This will hide any content exceeding the height */
+    width: 100%;
+    height: 300px; 
+    overflow: hidden; 
     border-radius: 15px;
     box-shadow: 0 4px 8px 5px rgba(0, 0, 0, 0.1);
     background-color:#96E6B3;
-    transition:all 1s ease-in;
+    transition: all 1s ease-in-out;
 }
 .details{
+  padding:10px;
   display: flex;
   flex-direction: column;
+  align-items: start;
   transition:all 1s ease-in;
 }
   .weekfromdeadline{
@@ -52,7 +54,7 @@
     }
   }
   .description {
-    overflow-y: auto; /* Enable vertical scrolling */
+    overflow-y: auto;
     min-height: 30px; 
     border:2px solid #a69ee4;
     text-align: left;

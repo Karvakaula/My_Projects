@@ -1,7 +1,11 @@
 #todoList {
-    display: grid;
-    gap: 30px;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    /*display: grid;*/
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    gap: 3px;
+    /*grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));*/
     width: 70%;
     background-color: #4b4a52;
     justify-items: center;
@@ -13,9 +17,8 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
+    align-items: flex-end;
     width: 80vw;
-    
     border-radius: 15px;
     margin: 20px;
     padding: 20px;

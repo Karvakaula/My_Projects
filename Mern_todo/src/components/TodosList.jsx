@@ -39,11 +39,13 @@ const TodoList = () => {
     
     <section className='container'>
     <TodoComponent onAddTodo={handleAddTodo} />
-    <div id='todoList'>
-      {todos.map(todo => (
-        <TodoCard key={todo._id} todo={todo} onDelete={handleDelete} onComplete={HandleComplete} />
-      ))}
-      
+        <div id='todoList'>
+      {todos
+        .slice() // Create a copy of the array to avoid mutating the original array
+        .sort((a, b) => a.position - b.position) // Sort todos by position
+        .map(todo => (
+          <TodoCard key={todo._id} todo={todo} onDelete={handleDelete} onComplete={HandleComplete} />
+        ))}
     </div>
     </section>
   );

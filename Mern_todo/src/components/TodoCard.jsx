@@ -12,16 +12,17 @@ const TodoCard = ({ todo, onDelete, onComplete }) => {
     const now = moment(); 
     const deadline = moment(todo.deadline); 
     const duration = moment.duration(deadline.diff(now)); 
-
+    console.log("ded",deadline)
     const days = Math.floor(duration.asDays());
     const hours = duration.hours(); 
     const minutes = duration.minutes()
 
-    if (days > 0) {
+    if (days > 0 | days < 0) {
       setTimeRemaining(`${days}d ${hours}h ${minutes}m`);
     } else if (hours > 0) {
       setTimeRemaining(`${hours}h ${minutes}m`);
     } else {
+      console.log("minat", minutes, hours, days)
       setTimeRemaining(`${minutes}m`);
     }
   };
@@ -69,7 +70,6 @@ const TodoCard = ({ todo, onDelete, onComplete }) => {
   const isDeadlineNear = (deadline) => {
     const currentDate = moment(); 
     const deadlineDate = moment(deadline); 
-
     const isLate = deadlineDate.isBefore(currentDate);
     const isNear = Math.abs(deadlineDate.diff(currentDate, 'milliseconds')) < 24 * 60 * 60 * 1000 && !isLate; // lets count if deadline is 24h from current
     const isWithinWeek = deadlineDate.isSameOrBefore(moment().add(7, 'days')) && !isNear && !isLate; // letts see if deadline is within week AND isNear = false

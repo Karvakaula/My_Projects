@@ -7,13 +7,10 @@ const TodoSchema = new mongoose.Schema(
         description: { type: String},
         deadline: { type: Date },
         completed:{ type: Boolean, required: true},
-        list: {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: 'List'
-        }
-
+        position: {type : Number, required: true}
     }
 );
+
 
 const Todo = mongoose.model('Todo', TodoSchema, 'Todos') 
 

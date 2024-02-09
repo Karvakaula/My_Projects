@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Todo = require('../schemas/TodoSchema.js') 
+const todoController = require('../controllers/taskposition.js');
 
 router.delete('/todos/:id', async (req, res) => {
     try {
@@ -39,15 +40,24 @@ router.get('/todos', async (req, res) => {
     }
 });
 
-router.post('/todos', async (req, res) => {
+router.post('/todos', todoController.addTodo, async (req, res) => {
     try {
-        const { title, description, completed, deadline, list } = req.body;
-        console.log(toString(deadline))
-        const newTodo = new Todo({ title, description, completed, deadline, list });
-        const savedTodo = await newTodo.save();
-        res.status(201).json(savedTodo);
+        const { title, description, deadline, completed } = req.body;
+        const position = req.position;
+        console.log(position)
+        const newTodo = new Todo({
+            title,
+            description,
+            deadline,
+            completed,
+            position
+        });
+        await newTodo.save();
+
+        res.status(201).json(newTodo);
     } catch (error) {
-        res.status(500).json({ error: 'Internal Server Error' });
+        console.error('Error adding todo:', error);
+        res.status(500).json({ error: 'Failed to add todo' });
     }
 });
 
