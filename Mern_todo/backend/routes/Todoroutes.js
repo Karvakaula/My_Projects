@@ -39,6 +39,22 @@ router.get('/todos', async (req, res) => {
         res.status(500).json({ error: 'Internal Server Error' });
     }
 });
+router.post('/todos/reorder', async (req, res) => {
+    try {
+      const { newOrder } = req.body;
+      console.log(newOrder)
+      // Update todo positions in the database based on the new order
+      for (let i = 0; i < newOrder.length; i++) {
+        await Todo.findByIdAndUpdate(newOrder[i], { position: i + 1 });
+        console.log(Todo)
+      }
+      
+      res.status(200).json({ message: 'Todo positions updated successfully' });
+    } catch (error) {
+      console.error('Error updating todo positions:', error);
+      res.status(500).json({ error: 'Failed to update todo positions' });
+    }
+  });
 
 router.post('/todos', todoController.addTodo, async (req, res) => {
     try {

@@ -1,18 +1,35 @@
-// TodoList.js
+
 
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import TodoCard from './TodoCard';
 import TodoComponent from './AddTodo';
 import './TodosList.css'
+import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
+
 const TodoList = () => {
   const [todos, setTodos] = useState([]);
+  const onDragEnd = async (result) => {
+    // Reorder todos in the frontend
+    if (!result.destination) return;
+    const newTodos = Array.from(todos);
+    const [reorderedTodo] = newTodos.splice(result.source.index, 1);
+    newTodos.splice(result.destination.index, 0, reorderedTodo);
+    setTodos(newTodos);
 
+    try {
+      await axios.post('http://localhost:3001/api/todos/reorder', { newOrder: newTodos.map(todo => todo._id) });
+    } catch (error) {
+      console.error('Error updating todo positions:', error);
+    }
+  };
   useEffect(() => {
     const fetchTodos = async () => {
       try {
         const response = await axios.get('http://localhost:3001/api/todos');
-        setTodos(response.data);
+        const sortedTodos = response.data.sort((a, b) => a.position - b.position);
+
+        setTodos(sortedTodos);
       } catch (error) {
         console.error('Error fetching todos:', error);
       }
@@ -22,7 +39,6 @@ const TodoList = () => {
   }, []);
   
   const handleDelete = (deletedTodoId) => {
-    // Update the state by filtering out the deleted todo
     setTodos((prevTodos) => prevTodos.filter((todo) => todo._id !== deletedTodoId));
   };
   const HandleComplete = (completedTodoId) =>{
@@ -39,14 +55,33 @@ const TodoList = () => {
     
     <section className='container'>
     <TodoComponent onAddTodo={handleAddTodo} />
-        <div id='todoList'>
-      {todos
-        .slice() // Create a copy of the array to avoid mutating the original array
-        .sort((a, b) => a.position - b.position) // Sort todos by position
-        .map(todo => (
-          <TodoCard key={todo._id} todo={todo} onDelete={handleDelete} onComplete={HandleComplete} />
-        ))}
+
+   
+    <div id='todoList'>
+    <DragDropContext onDragEnd={onDragEnd}>
+    <Droppable droppableId="todos">
+          {(provided) => (
+            <div {...provided.droppableProps} ref={provided.innerRef} id='todoList'>
+              {todos.map((todo, index) => (
+                <Draggable key={todo._id} draggableId={todo._id} index={index}>
+                  {(provided) => (
+                    <div 
+                      ref={provided.innerRef}
+                      {...provided.draggableProps}
+                      {...provided.dragHandleProps}
+                    >
+                      <TodoCard todo={todo} onDelete={handleDelete} onComplete={HandleComplete} />
+                    </div>
+                  )}
+                </Draggable>
+              ))}
+              {provided.placeholder}
+            </div>
+          )}
+          </Droppable>
+        </DragDropContext>
     </div>
+    
     </section>
   );
 };
