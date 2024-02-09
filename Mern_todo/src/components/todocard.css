@@ -10,6 +10,7 @@
     box-shadow: 0 4px 8px 5px rgba(0, 0, 0, 0.1);
     background-color:#96E6B3;
     transition:all 1s ease-in;
+    position: relative;
     &.todo-card h3{
       top:0;
       bottom:0;
@@ -68,13 +69,21 @@
     width: 80%;
     background-color: #BEB8EB;
   }
+  .dragging{
+    box-shadow: 7px 0px 10px 10px rgba(12, 218, 245, 0.719);
+    border-radius: 15px;
+
+  }
   .delBtn{
     position: absolute;
     width: 10px;
+    left:2px;
+    transition:all 1s ease-in-out;
+    font-size: 1.3em;
     &:hover{
       cursor: pointer;
       font-weight: bolder;
-
+      color:red;
     }
   }
   .Completed{

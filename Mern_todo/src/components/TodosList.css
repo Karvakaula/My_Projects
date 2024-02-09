@@ -4,7 +4,7 @@
     flex-direction: column;
     overflow-y: scroll;
     overflow-x: hidden;
-    gap: 3px;
+    gap: 10px;
     /*grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));*/
     width: 70%;
     background-color: #4b4a52;
@@ -12,7 +12,7 @@
     padding:20px;
     border-radius: 15px;
   }
-  
+ 
   .container {
     display: flex;
     flex-direction: column;

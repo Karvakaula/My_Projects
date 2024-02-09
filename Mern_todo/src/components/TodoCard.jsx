@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import moment from 'moment';
 import './todocard.css';
+import { FaRegTrashAlt } from "react-icons/fa";
 
 const TodoCard = ({ todo, onDelete, onComplete }) => {
   const [timeRemaining, setTimeRemaining] = useState('');
@@ -101,7 +102,8 @@ const TodoCard = ({ todo, onDelete, onComplete }) => {
           <span className='date'>{formattedDeadline}</span>
         </div>
       )}
-      <span className='delBtn' onClick={() => handleDelete(todo.id)}>X</span>
+      <span className='delBtn' onClick={() => handleDelete(todo.id)}><FaRegTrashAlt />
+</span>
     </div>
   );
 };

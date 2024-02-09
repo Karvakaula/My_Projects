@@ -9,6 +9,7 @@ import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 
 const TodoList = () => {
   const [todos, setTodos] = useState([]);
+
   const onDragEnd = async (result) => {
     if (!result.destination) return;
     const newTodos = Array.from(todos);
@@ -22,6 +23,7 @@ const TodoList = () => {
       console.error('Error updating todo positions:', error);
     }
   };
+
   useEffect(() => {
     const fetchTodos = async () => {
       try {
@@ -60,14 +62,16 @@ const TodoList = () => {
     <DragDropContext onDragEnd={onDragEnd}>
     <Droppable droppableId="todos">
           {(provided) => (
-            <div {...provided.droppableProps} ref={provided.innerRef} id='todoList'>
+            <div {...provided.droppableProps} ref={provided.innerRef} id='draglist'>
               {todos.map((todo, index) => (
                 <Draggable key={todo._id} draggableId={todo._id} index={index}>
-                  {(provided) => (
+                  {(provided, snapshot) => (
                     <div 
                       ref={provided.innerRef}
                       {...provided.draggableProps}
                       {...provided.dragHandleProps}
+                      className={snapshot.isDragging ? 'dragging' : ''}
+
                     >
                       <TodoCard todo={todo} onDelete={handleDelete} onComplete={HandleComplete} />
                     </div>
