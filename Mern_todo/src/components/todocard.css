@@ -8,7 +8,17 @@
     overflow: hidden; 
     border-radius: 15px;
     box-shadow: 0 4px 8px 5px rgba(0, 0, 0, 0.1);
-    background-color:#96E6B3;
+   /* background-color:#96E6B3;*/
+   background: linear-gradient(
+    45deg,
+    #a3e0f8 5%,
+    #a3e0f8 10%,
+    #7fd6f8 30%,
+    #5ac9f6 50%,
+    hsl(197, 100%, 67%) 70%,
+    #a3e0f8 80%,
+    #87ddff 95%
+  );
     transition:all 1s ease-in;
     position: relative;
     &.todo-card h3{
@@ -17,7 +27,7 @@
       width: auto;
     }
   }
- 
+
 .expanded{
   display: flex;
     flex-direction: column;
@@ -36,12 +46,15 @@
   display: flex;
   flex-direction: column;
   align-items: start;
-  transition:all 1s ease-in;
+  transition:all 1s ease-in-out;
 }
   .weekfromdeadline{
-    border: 2px solid beige;
+    border: 2px solid rgb(203, 203, 24);
     
     background-color: #faef7c;
+    .alert{
+      color:rgb(203, 203, 24);
+    }
   }
   .near-deadline{
     
@@ -50,6 +63,7 @@
     .description{
       background-color: white;
     }
+
   }
   .late{
     background-color: #353831;
@@ -57,6 +71,9 @@
     border:2px #C94545 solid;
     .description{
       background-color: #C94545;
+    }
+    .alert{
+      animation:flash 1s infinite;
     }
   }
   .description {
@@ -86,14 +103,35 @@
       color:red;
     }
   }
+  .alert{
+    position: absolute;
+    right: 2px;
+    font-size: 1.3em;
+    transition:all 1s ease-in-out;
+
+  }
   .Completed{
     border:3px green solid;
     background-color: #53A2BE;
     .description{
       background-color: white;
     }
+    .alert{
+      color:green;
+    }
   }
-  
+  @keyframes flash {
+    0% {
+      color: red;
+    }
+    50% {
+      color: black;
+
+    }
+    100% {
+      color: red;
+    }
+  }
   @media (max-width: 768px) {
     #todoList {
       grid-template-columns: repeat(auto-fill, minmax(100%, 1fr));

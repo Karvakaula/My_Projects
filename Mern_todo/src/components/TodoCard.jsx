@@ -3,6 +3,10 @@ import axios from 'axios';
 import moment from 'moment';
 import './todocard.css';
 import { FaRegTrashAlt } from "react-icons/fa";
+import { MdWatchLater } from "react-icons/md";
+import { FaCheck } from "react-icons/fa";
+
+import { RiAlertFill } from "react-icons/ri";
 
 const TodoCard = ({ todo, onDelete, onComplete }) => {
   const [timeRemaining, setTimeRemaining] = useState('');
@@ -86,6 +90,7 @@ const TodoCard = ({ todo, onDelete, onComplete }) => {
       <div className="header" onClick={toggleExpand}>
         <h3 className='title'>{todo.title}</h3>
         <span className='timer'>{timeRemaining}</span>
+        
       </div>
       {isExpanded && (
         <div className="details">
@@ -102,8 +107,11 @@ const TodoCard = ({ todo, onDelete, onComplete }) => {
           <span className='date'>{formattedDeadline}</span>
         </div>
       )}
-      <span className='delBtn' onClick={() => handleDelete(todo.id)}><FaRegTrashAlt />
-</span>
+      <span className='delBtn' onClick={() => handleDelete(todo.id)}><FaRegTrashAlt /></span>
+      <span className='alert'>
+      {near ? <MdWatchLater /> : ''} {late && !todo.completed ? <RiAlertFill /> : ''} {todo.completed ? <FaCheck /> : ' '} {withinWeek && !todo.completed ? <MdWatchLater /> : ''}
+
+      </span>
     </div>
   );
 };
