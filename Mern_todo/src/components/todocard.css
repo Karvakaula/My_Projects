@@ -3,28 +3,22 @@
     flex-direction: column;
     padding: 5px;
     border: 2px solid beige;
-    width: 100%;
+    min-width: 400px;
     height: 80px; 
     overflow: hidden; 
     border-radius: 15px;
     box-shadow: 0 4px 8px 5px rgba(0, 0, 0, 0.1);
-   /* background-color:#96E6B3;*/
-   background: linear-gradient(
-    45deg,
-    #a3e0f8 5%,
-    #a3e0f8 10%,
-    #7fd6f8 30%,
-    #5ac9f6 50%,
-    hsl(197, 100%, 67%) 70%,
-    #a3e0f8 80%,
-    #87ddff 95%
-  );
+    background-color:#fafafa;
+   
     transition:all 1s ease-in;
     position: relative;
     &.todo-card h3{
       top:0;
       bottom:0;
       width: auto;
+    }
+    .alert{
+      color: green;
     }
   }
 
@@ -33,12 +27,12 @@
     flex-direction: column;
     padding: 5px;
     border: 2px solid beige;
-    width: 100%;
+    width: 50%;
     height: 300px; 
     overflow: hidden; 
     border-radius: 15px;
     box-shadow: 0 4px 8px 5px rgba(0, 0, 0, 0.1);
-    background-color:#96E6B3;
+    background-color:#fafafa;
     transition: all 1s ease-in-out;
 }
 .details{
@@ -51,7 +45,7 @@
   .weekfromdeadline{
     border: 2px solid rgb(203, 203, 24);
     
-    background-color: #faef7c;
+    background-color:#fafafa;
     .alert{
       color:rgb(203, 203, 24);
     }
@@ -59,18 +53,19 @@
   .near-deadline{
     
     border: 2px solid beige;
-    background-color: #C94545;
+    background-color:#fafafa;
     .description{
       background-color: white;
     }
-
+    .alert{
+      color: gold;
+    }
   }
   .late{
-    background-color: #353831;
-    color:white;
+    background-color:#fafafa;
     border:2px #C94545 solid;
     .description{
-      background-color: #C94545;
+      background-color:#fafafa;
     }
     .alert{
       animation:flash 1s infinite;
@@ -84,7 +79,7 @@
     padding:5px;
     border-radius: 15px;
     width: 80%;
-    background-color: #BEB8EB;
+    background-color:#fafafa;
   }
   .dragging{
     box-shadow: 7px 0px 10px 10px rgba(12, 218, 245, 0.719);
@@ -112,7 +107,7 @@
   }
   .Completed{
     border:3px green solid;
-    background-color: #53A2BE;
+
     .description{
       background-color: white;
     }
