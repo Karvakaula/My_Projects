@@ -11,3 +11,15 @@ Implemented some routing and login/logout logic. Got books rendered and a route 
 Color scheme is a cute pink, because yesterday was valentines day ^^
 
 Got reviews rendered. Started creating a like function, added likes to book schemas review item
+
+Also tried MUI components a litle bit, might implement more into this page.
+
+### current login page
+
+![loginpage](image.png)
+
+### current book list (navbar user icon needs a photo)
+
+![booklist](image-1.png)
+
+need to learn how to save pictures to mongodb, apperently they need to be for example base64 encoded
