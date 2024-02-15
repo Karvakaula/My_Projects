@@ -1,0 +1,17 @@
+#grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 3vw;
+    margin: 2.5vh auto;
+    max-width:80%;
+    background-color:#f8bbd08f;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    height: 300px;
+    overflow-y: scroll;
+    
+}
+#Books{
+    top:0;
+}

@@ -1,0 +1,17 @@
+.review{
+    border: 2px solid white;
+    border-radius: 5px;
+    height: 200px;
+    width: 80%;
+    background-color: #f8bbd0;
+    color: white;
+    position: relative;
+}
+.like{
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    &:hover svg{
+        background-color: red;
+    }
+}

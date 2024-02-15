@@ -1,0 +1,14 @@
+#Nav{
+    height: 60px;
+    position: fixed;
+    top:0;
+    &#Nav logbtn{
+        border:none;
+        background: #aed581 ;
+        border-radius: 5px;
+        padding:8px;
+        color: white;
+        font-weight: bold;
+    }
+}
+

@@ -1,0 +1,18 @@
+.book-item {
+    background-color:#f8bbd0;
+    padding: 2vw;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.356);
+    text-align: left;
+    transition: box-shadow 1s, transform 1s;
+    border: 2px solid #aed581;
+    color:white;
+    width: 250px;
+    height: 150px;
+}
+.book-item:hover{
+    cursor: pointer;
+    box-shadow: 0 0 15px rgba(1, 255, 242, 0.969), 0 0 30px rgba(0, 0, 0, 0.2);
+    transform: scale(1.05);
+    animation: pulsate 1.5s infinite;
+}
