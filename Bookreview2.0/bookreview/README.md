@@ -8,4 +8,6 @@
 
 Implemented some routing and login/logout logic. Got books rendered and a route to bookreview page.
 
+Color scheme is a cute pink, because yesterday was valentines day ^^
+
 Got reviews rendered. Started creating a like function, added likes to book schemas review item
