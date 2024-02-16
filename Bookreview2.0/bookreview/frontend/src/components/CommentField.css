@@ -1,0 +1,23 @@
+#AddForm{
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    height: 200px;
+    gap:10px;
+    background-color: #f8bbd0;
+    padding: 15px;
+    border-radius: 5px;
+    &#AddForm input, textarea{
+        transition: 0.3s ease-in-out;
+        width: 70%;
+        &:focus{
+            background-color: #f79aba;
+            border: 2px solid #f79aba;
+        }
+    }
+}
+#container{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}

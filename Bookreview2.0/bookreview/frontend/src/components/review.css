@@ -1,4 +1,7 @@
 .review{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
     border: 2px solid white;
     border-radius: 5px;
     height: 200px;
@@ -6,12 +9,20 @@
     background-color: #f8bbd0;
     color: white;
     position: relative;
+    padding:3px;
 }
 .like{
+    display: flex;
+    flex-direction: row;
     position: absolute;
     right: 10px;
     bottom: 10px;
-    &:hover svg{
-        background-color: red;
-    }
+    &.like svg:hover, .favorite-icon {
+        transform: scale(1.2); /* Increase the size of the heart icon on hover */
+      }
+}
+.stars{
+    position: absolute;
+    bottom: 5px;
+   
 }

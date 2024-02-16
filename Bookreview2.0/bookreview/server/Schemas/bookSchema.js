@@ -15,7 +15,11 @@ const bookSchema = new mongoose.Schema(
                     type: Date, //tämä date formi vähän huono mutta en ole löytänyt parempaa
                 },
                 rating: { type: Number, min: 0, max: 5 },
-                likes: String,
+                likes: [
+                    {
+                        userId: String
+                    }
+                ]
             },
         ],
     },

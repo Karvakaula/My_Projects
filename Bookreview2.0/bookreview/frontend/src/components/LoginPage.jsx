@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 import "./Login.css";
 
 const theme = createTheme({
@@ -51,8 +51,8 @@ function LoginForm({ onLogin }) {
       console.log("uname", responseBody.username);
       document.getElementById("username").innerHTML = " ";
       setIsLoggedIn(true);
-      onLogin()
-      navigate('/home')
+      onLogin();
+      navigate("/home");
     } catch (error) {
       console.error("Error during login:", error);
     }
@@ -97,7 +97,7 @@ function LoginForm({ onLogin }) {
               id="standard-basic"
               label="Username"
               variant="standard"
-              color="secondary"
+              
             />
             <TextField
               id="standard-basic"

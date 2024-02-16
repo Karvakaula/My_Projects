@@ -23,3 +23,14 @@ Also tried MUI components a litle bit, might implement more into this page.
 ![booklist](image-1.png)
 
 need to learn how to save pictures to mongodb, apperently they need to be for example base64 encoded
+
+
+### 16.2 
+
+added a like feature, and it seems to work really well.
+
+![alt text](image-2.png)
+
+![alt text](image-3.png)
+
+

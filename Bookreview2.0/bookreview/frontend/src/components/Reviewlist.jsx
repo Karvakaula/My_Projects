@@ -5,7 +5,9 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Review from "./review";
+import Commentfield from './CommentField'
 import './reviewlist.css'
+
 const theme = createTheme({
   palette: {
     primary: {
@@ -43,10 +45,10 @@ const Reviewlist = () => {
   return (
     <section id="reviews">
       <h2 className="bookname">{book.name}, by {book.author}</h2>
-      <p></p>
+      <Commentfield/>
       <div id="gridrev">
         {reviews.map((review) => (
-          <Review key={review._id} review={review} />
+          <Review key={review._id} review={review} book={book._id} />
         ))}
       </div>
     </section>

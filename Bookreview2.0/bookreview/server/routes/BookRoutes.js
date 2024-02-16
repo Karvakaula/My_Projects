@@ -121,23 +121,24 @@ router.delete('/books/:bookname/reviews/:id', async (request, response) => {
 router.put('/books/edit/:bookId/reviews/:id', async (request, response) => {
     const bookId = request.params.bookId;
     const revId = request.params.id;
+    console.log("revID", revId)
     try {
         const book = await Book.findById(bookId);
-
         if (book) {
             const review = book.reviews.find(review => review.id === revId);
+            console.log("review", review)
 
             if (review) {
                 // Check if the user already liked the review
                 const userId = request.body.userId; // Assuming you have user ID in the request body
-                const userLikedIndex = review.likes.indexOf(userId);
-
-                if (userLikedIndex === -1) {
+                const userLiked = review.likes.find(like => like.userId === userId);
+                console.log("userLiked:", userLiked);
+                if (!userLiked) {
                     // If the user hasn't liked the review, add their ID to the likes array
-                    review.likes.push(userId);
+                    review.likes.push({ userId });
                 } else {
                     // If the user already liked the review, remove their ID from the likes array
-                    review.likes.splice(userLikedIndex, 1);
+                    review.likes = review.likes.filter(like => like.userId !== userId);
                 }
 
                 // Save the updated book with the modified review
