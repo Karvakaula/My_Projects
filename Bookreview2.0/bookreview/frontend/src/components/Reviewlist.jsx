@@ -5,8 +5,8 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Review from "./review";
-import Commentfield from './CommentField'
-import './reviewlist.css'
+import CommentField from "./CommentField"; // Fixed import statement
+import "./reviewlist.css";
 
 const theme = createTheme({
   palette: {
@@ -20,32 +20,42 @@ const theme = createTheme({
 });
 
 const Reviewlist = () => {
-  const [reviews, SetReviews] = React.useState([]);
-  const [book, SetBook] = React.useState([]);
+  const [reviews, setReviews] = useState([]);
+  const [book, setBook] = useState([]);
   const bookId = localStorage.Bookid;
   console.log("book", book);
   console.log("reviews", reviews);
-  useEffect(() => {
-    const fetchBooks = async () => {
-      try {
-        const response = await axios.get(
-          `http://localhost:3001/books/books/${bookId}`
-        );
-        const data = Array.from(response.data);
-        console.log(response.data);
-        SetBook(response.data);
-        SetReviews(response.data.reviews);
-      } catch (error) {
-        console.error("Error fetching todos:", error);
-      }
-    };
 
+  // Function to fetch book and reviews data
+  const fetchBooks = async () => {
+    try {
+      const response = await axios.get(
+        `http://localhost:3001/books/books/${bookId}`
+      );
+      console.log(response.data);
+      setBook(response.data);
+      setReviews(response.data.reviews);
+    } catch (error) {
+      console.error("Error fetching book data:", error);
+    }
+  };
+
+  // Function to refresh review list after posting a review
+  const handleRefreshReviews = () => {
+    fetchBooks();
+  };
+
+  useEffect(() => {
     fetchBooks();
   }, []);
+
   return (
     <section id="reviews">
-      <h2 className="bookname">{book.name}, by {book.author}</h2>
-      <Commentfield/>
+      <h2 className="bookname">
+        {book.name}, by {book.author}
+      </h2>
+      <CommentField onPost={handleRefreshReviews} />{" "}
+      {/* Pass the callback function */}
       <div id="gridrev">
         {reviews.map((review) => (
           <Review key={review._id} review={review} book={book._id} />

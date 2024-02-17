@@ -2,15 +2,16 @@
 const bcrypt = require("bcrypt")
 const express = require('express') 
 const cors = require('cors')
+const path = require('path');
 const app = express()
 const port = 3001
 const userController = require('./usercontrols.js');
 const createError= require('http-errors')
 app.use(express.json())
 app.use(cors())
+
 require('dotenv').config();
-const path = require('path');
-app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+app.use('./images', express.static(path.join(__dirname, './images')));
 // yhteys mongoDB
 const mongoose = require('mongoose')
 const mongoDB = process.env.MONGODB_URI;

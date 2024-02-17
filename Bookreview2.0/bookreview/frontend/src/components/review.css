@@ -4,12 +4,16 @@
     align-items: flex-start;
     border: 2px solid white;
     border-radius: 5px;
-    height: 200px;
+    height: 300px;
     width: 80%;
     background-color: #f8bbd0;
     color: white;
     position: relative;
     padding:3px;
+}
+.comment{
+    bottom:30px;
+    position: relative;
 }
 .like{
     display: flex;

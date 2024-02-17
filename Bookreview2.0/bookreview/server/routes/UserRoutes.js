@@ -1,22 +1,34 @@
 const express = require('express');
 const router = express.Router();
 const User = require('../Schemas/userSchema.js');
-const multer = require('multer');
-const storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-      cb(null, 'uploads/');
-    },
-    filename: function (req, file, cb) {
-      cb(null, file.originalname); // Keep the original file name
-    },
-  });
-const upload = multer({ storage: storage });
+const fs = require('fs');
+const path = require('path');
+
 //const userController = require('../usercontrols.js');
 const createError= require('http-errors')
 const { authSchema } =require('../helps/validation.js')
 const { signAccesstoken } = require ('../helps/jwt_helper.js')
 const { authloginSchema } = require('../helps/LoginValidation.js');
 
+router.get('/image-endpoints', (req, res) => {
+  try {
+    // Read the files in the 'images' directory
+    fs.readdir(path.join(__dirname, '../images'), (err, files) => {
+      if (err) {
+        throw err;
+      }
+
+      // Filter out directories and return only filenames
+      const imageEndpoints = files.filter((file) => fs.statSync(path.join(__dirname, '../images', file)).isFile());
+      console.log(imageEndpoints)
+      // Send the list of image filenames as a response
+      res.json(imageEndpoints);
+    });
+  } catch (error) {
+    console.error('Error fetching image endpoints:', error);
+    res.status(500).send('Internal Server Error');
+  }
+});
 router.post('/register', async (req, res, next) => {
     try {
         // body tulee validatesync funktion läpi, tarkistaa että kaikki vaadittavat kentät löytyy
@@ -77,27 +89,8 @@ router.post('/login', async (req, res, next) => {
         next(error)
     }
 });
-router.post('/upload/:username', upload.single('profilePicture'), async (req, res, next) => {
-    try {
-      const username = req.params.username;
-      const user = await User.findOne({username : username });
-    console.log("1user"+ user)
-      if (!user) {
-        return res.status(404).send('User not found');
-      }
-  
-      const filePath = req.file.path;
-      const originalFileName = req.file.originalname;
-      user.profilePicture = originalFileName;
-     
-      await user.save();
-      console.log(user)
-      res.status(200).send('File uploaded successfully');
-    } catch (error) {
-      console.error('Error during file upload:', error);
-      next(error);
-    }
-});
+
+
 router.get('/usercheck/:username', function(req, res) {
     User.findOne({username: req.params.username}, function(err, user){
         if(err) {
