@@ -1,18 +1,30 @@
 .book-item {
+    position: relative;
     background-color:#f8bbd0;
-    padding: 2vw;
+    padding: 1.3vw 1vw;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.356);
     text-align: left;
     transition: box-shadow 1s, transform 1s;
-    border: 2px solid #aed581;
+    border: 2px solid #f8bbd0;
     color:white;
-    width: 250px;
-    height: 150px;
+    max-width: 250px;
+    height: 250px;
+    &.book-item button{
+        color: black;
+        position: absolute;
+        bottom: 10px;
+        background-color: #f8bbd067;
+        &:hover{
+            background-color: #f8bbd08e;
+
+        }
+    }
 }
 .book-item:hover{
-    cursor: pointer;
-    box-shadow: 0 0 15px rgba(1, 255, 242, 0.969), 0 0 30px rgba(0, 0, 0, 0.2);
+    transition: all 1s ease-in-out;
+
+    box-shadow: 0 0 15px #faa7c4, 0 0 30px rgba(0, 0, 0, 0.2);
     transform: scale(1.05);
     animation: pulsate 1.5s infinite;
 }
