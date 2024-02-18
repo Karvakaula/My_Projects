@@ -33,7 +33,7 @@ const Review = ({ review, book }) => {
       for (let i = 0; i < 5; i++) {
         if (i < Math.floor(rating)) {
           // if rating = full number
-          stars.push(<StarIcon key={i} color="secondary"/>);
+          stars.push(<StarIcon key={i} color="secondary" />);
         } else if (i === Math.floor(rating) && rating % 1 !== 0) {
           // if rating mod i< 0 half star
           stars.push(<StarHalfIcon key={i} color="secondary" />);
@@ -67,15 +67,17 @@ const Review = ({ review, book }) => {
     }
   };
   return (
-    <div className="review">
-      <h2 className="Username">{review.user}</h2>
-      <p className="comment">{review.content}</p>
-      <span className="like" onClick={handleLike}>
-        {likesCount}
-        {liked ? <FavoriteIcon color="secondary" /> : <FavoriteBorderIcon />}
-      </span>
-      <span className="stars">{ratingStars}</span>
-    </div>
+      <div className="review">
+        <h2 className="Username">{review.user}</h2>
+        <div className="comment">
+          <p>{review.content}</p>
+        </div>
+        <span className="like" onClick={handleLike}>
+          {likesCount}
+          {liked ? <FavoriteIcon color="secondary" /> : <FavoriteBorderIcon />}
+        </span>
+        <span className="stars">{ratingStars}</span>
+      </div>
   );
 };
 export default Review;

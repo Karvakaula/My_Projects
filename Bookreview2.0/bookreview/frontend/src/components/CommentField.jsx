@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./CommentField.css";
 import axios from "axios";
+import { Input } from '@mui/base/Input';
 
 const CommentField = ({ onPost }) => {
   // Modified to receive props

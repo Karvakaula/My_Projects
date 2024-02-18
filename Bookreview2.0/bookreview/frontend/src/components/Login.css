@@ -27,11 +27,12 @@
     background-color: #aed581;
  }
 }
-#password, #username{
+/*#password, #username{
     padding: 5px;
-    background-color: #f8bbd0  ;
+    background-color: #f8bbd0  !important; 
     border-radius: 5px;
     &:focus{
         background-color: #f8bbd0  ;
     }
 }
+*/

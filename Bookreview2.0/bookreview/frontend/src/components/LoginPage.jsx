@@ -39,7 +39,7 @@ function LoginForm({ onLogin }) {
       });
       if (!response.ok) {
         const errorField = document.getElementById("errorfield1L");
-        errorField.textContent = "Invalid username or password";
+        errorField.textContent = "Invalid login credentials";
         return;
       }
       const responseBody = await response.json();
@@ -58,63 +58,64 @@ function LoginForm({ onLogin }) {
     }
   };
   const handlechange = () => {
-    setRegistering(true);
+    if (!registering) {
+      setRegistering(true);
+    } else {
+      setRegistering(false);
+    }
   };
   return (
-    <ThemeProvider theme={theme}>
-      <section id="LoginPage">
-        {!registering ? (
-          <div className="LoginForm">
-            <h1>Login</h1>
-            <TextField
-              id="username"
-              label="Username"
-              variant="standard"
-              onChange={(e) => setUsername(e.target.value)}
-            />
-            <TextField
-              id="password"
-              label="Password"
-              variant="standard"
-              type="password"
-              onChange={(e) => setPassword(e.target.value)}
-            />
+    <section id="LoginPage">
+      {!registering ? (
+        <div className="LoginForm">
+          <h1>Login</h1>
+          <h3 id="errorfield1L"></h3>
+          <TextField
+            id="username"
+            label="Username"
+            autocomplete="off"
+            variant="standard"
+            
+            onChange={(e) => setUsername(e.target.value)}
+          />
+          <TextField
+            id="password"
+            label="Password"
+            autocomplete="off"
+            variant="standard"
+            type="password"
+            onChange={(e) => setPassword(e.target.value)}
+          />
 
-            <button
-              className="btn"
-              onClick={() => handleLogin(username, password)}
-            >
-              Log In
-            </button>
-            <button className="btn" onClick={handlechange}>
-              Register
-            </button>
-          </div>
-        ) : (
-          <div className="LoginForm">
-            <h1>Register</h1>
-            <TextField
-              id="standard-basic"
-              label="Username"
-              variant="standard"
-              
-            />
-            <TextField
-              id="standard-basic"
-              label="Password"
-              variant="standard"
-            />
-
-            <button className="btn" onClick={handlechange}>
-              Log In
-            </button>
-            <button className="btn" onClick={handlechange}>
-              Register
-            </button>
-          </div>
-        )}
-      </section>
-    </ThemeProvider>
+          <button
+            className="btn"
+            onClick={() => handleLogin(username, password)}
+          >
+            Log In
+          </button>
+          <button className="btn" onClick={handlechange}>
+            Register
+          </button>
+        </div>
+      ) : (
+        <div className="LoginForm">
+          <h1>Register</h1>
+          <TextField id="standard-basic" label="Username" variant="standard" />
+          <TextField id="standard-basic" label="Password" variant="standard" />
+          <TextField
+            id="standard-basic"
+            label="Password repeat"
+            variant="standard"
+          />
+          <button className="btn" onClick={handlechange}>
+            Log In
+          </button>
+          <button className="btn" onClick={handlechange}>
+            Register
+          </button>
+        </div>
+      )}
+    </section>
   );
 }
 export default LoginForm;

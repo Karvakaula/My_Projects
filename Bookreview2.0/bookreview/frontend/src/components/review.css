@@ -4,16 +4,29 @@
     align-items: flex-start;
     border: 2px solid white;
     border-radius: 5px;
-    height: 300px;
-    width: 80%;
-    background-color: #f8bbd0;
+    height: 270px;
+    width: 45%;
+    background-color: #fca8c5d5;
     color: white;
     position: relative;
     padding:3px;
+    &.review .Username{
+        text-decoration: underline;
+    }
 }
+
 .comment{
-    bottom:30px;
+    border-radius: 5px;
+    border: 2px solid white;
+    background-color: rgba(124, 124, 124, 0.274);
+    width: 70%;
+    min-height: 100px;
+    text-align: left;
+    word-spacing: 1px;
+    padding-left: 10px;
     position: relative;
+    overflow-wrap: break-word; 
+
 }
 .like{
     display: flex;

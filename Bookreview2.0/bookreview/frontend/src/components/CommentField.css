@@ -7,13 +7,19 @@
     background-color: #f8bbd0;
     padding: 15px;
     border-radius: 5px;
-    &#AddForm input, textarea{
-        transition: 0.3s ease-in-out;
+    text-align: left;
+   &#AddForm input, textarea{
+        
         width: 70%;
         &:focus{
             background-color: #f79aba;
             border: 2px solid #f79aba;
         }
+       
+    }
+    &#AddForm button{
+        width: 90px;
+        padding:5px;
     }
 }
 #container{
