@@ -5,11 +5,13 @@
     border: 2px solid white;
     border-radius: 5px;
     height: 270px;
-    width: 45%;
+    width: 400px;
     background-color: #fca8c5d5;
     color: white;
     position: relative;
     padding:3px;
+    overflow-wrap: break-word; 
+
     &.review .Username{
         text-decoration: underline;
     }
@@ -24,9 +26,7 @@
     text-align: left;
     word-spacing: 1px;
     padding-left: 10px;
-    position: relative;
     overflow-wrap: break-word; 
-
 }
 .like{
     display: flex;
@@ -41,5 +41,17 @@
 .stars{
     position: absolute;
     bottom: 5px;
-   
+    
 }
+
+@keyframes shadowFlash {
+    0% {
+      text-shadow: 0 0 10px white; /* Start with text shadow */
+    }
+    50% {
+      text-shadow: 0 0 20px white; /* Increase text shadow size */
+    }
+    100% {
+      text-shadow: 0 0 0px white; /* Return to original text shadow */
+    }
+  }

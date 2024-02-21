@@ -22,7 +22,46 @@ function LoginForm({ onLogin }) {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [username, setUsername] = useState(""); // State variable for username
   const [password, setPassword] = useState(""); // State variable for password
+  const [password2, setPassword2] = useState(""); // State variable for password
 
+  const handleRegister = async () => {
+    try {
+      if (password === password2) {
+        const data = {
+          username: username,
+          password: password,
+        };
+        const response = await fetch(`http://localhost:3001/users/register`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+        });
+        if (!response.ok) {
+          const errorField = document.getElementById("errorfield2L");
+          errorField.textContent = "Invalid register credentials";
+          return;
+        }
+        const responseBody = await response.json();
+        localStorage.setItem("username", responseBody.user.username);
+        localStorage.setItem("userId", responseBody.user._id);
+        localStorage.setItem("token", responseBody.accessToken);
+  
+        setIsLoggedIn(true);
+        onLogin();
+        navigate("/home");
+      } else {
+        const errorField = document.getElementById("errorfield2L");
+        errorField.textContent = "Passwords do not match";
+      }
+    } catch (error) {
+      console.error("Error during registration:", error);
+      const errorField = document.getElementById("errorfield2L");
+      errorField.textContent = error.message || "Registration failed";
+
+    }
+  };
   const handleLogin = async (username, passwd) => {
     try {
       const data = {
@@ -100,17 +139,31 @@ function LoginForm({ onLogin }) {
       ) : (
         <div className="LoginForm">
           <h1>Register</h1>
-          <TextField id="standard-basic" label="Username" variant="standard" />
-          <TextField id="standard-basic" label="Password" variant="standard" />
+          <h3 id="errorfield2L"></h3>
+          <TextField 
+          id="standard-basic" 
+          label="Username" 
+          variant="standard" 
+          onChange={(e) => setUsername(e.target.value)}
+
+          />
+          <TextField 
+          id="standard-basic" 
+          label="Password" 
+          variant="standard" 
+          onChange={(e) => setPassword(e.target.value)}
+          />
           <TextField
             id="standard-basic"
             label="Password repeat"
             variant="standard"
+            onChange={(e) => setPassword2(e.target.value)}
+
           />
           <button className="btn" onClick={handlechange}>
             Log In
           </button>
-          <button className="btn" onClick={handlechange}>
+          <button className="btn" onClick={handleRegister}>
             Register
           </button>
         </div>

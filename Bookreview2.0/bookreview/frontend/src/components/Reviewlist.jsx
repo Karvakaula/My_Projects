@@ -54,6 +54,9 @@ const Reviewlist = () => {
       <h2 className="bookname">
         {book.name}, by {book.author}
       </h2>
+      <span>published: {book.year}</span>
+      <br></br>
+      <span>Average rating: {book.AVGrating}</span>
       <CommentField onPost={handleRefreshReviews} />{" "}
       {/* Pass the callback function */}
       <div id="gridrev">
