@@ -28,3 +28,8 @@
     transform: scale(1.05);
     animation: pulsate 1.5s infinite;
 }
+@media screen and (max-width: 600px) {
+   .book-item{
+    
+   }
+}

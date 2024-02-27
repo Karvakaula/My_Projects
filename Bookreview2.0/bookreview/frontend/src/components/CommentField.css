@@ -9,9 +9,10 @@
     border-radius: 5px;
     text-align: left;
    &#AddForm input, textarea{
-        
+        padding:5px;
         width: 70%;
         &:focus{
+            
             background-color: #f79aba;
             border: 2px solid #f79aba;
         }

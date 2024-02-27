@@ -5,13 +5,13 @@ import axios from "axios";
 
 const Profile = () => {
   const [imageUrls, setImageUrls] = useState([]);
-  console.log(imageUrls);
   const fetchImageEndpoints = async () => {
     try {
       const response = await axios.get(
         "http://localhost:3001/users/image-endpoints"
       );
       setImageUrls(response.data);
+
     } catch (error) {
       console.error("Error fetching image endpoints:", error);
     }

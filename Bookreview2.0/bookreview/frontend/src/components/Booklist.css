@@ -1,7 +1,7 @@
 #grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 5px;
     padding: 3vw;
     margin: 2.5vh auto;
     max-width:80%;
@@ -12,6 +12,13 @@
     overflow-y: scroll;
     
 }
-#Books{
-    top:0;
+#books{
+    top:0px;
 }
+@media screen and (max-width: 600px) {
+   #grid{
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 10px;
+
+   }
+  }

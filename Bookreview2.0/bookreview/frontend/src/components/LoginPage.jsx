@@ -112,7 +112,7 @@ function LoginForm({ onLogin }) {
           <TextField
             id="username"
             label="Username"
-            autocomplete="off"
+            autoComplete="off"
             variant="standard"
             
             onChange={(e) => setUsername(e.target.value)}
@@ -120,7 +120,7 @@ function LoginForm({ onLogin }) {
           <TextField
             id="password"
             label="Password"
-            autocomplete="off"
+            autoComplete="off"
             variant="standard"
             type="password"
             onChange={(e) => setPassword(e.target.value)}
