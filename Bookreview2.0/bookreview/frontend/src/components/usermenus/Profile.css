@@ -1,0 +1,10 @@
+.img-option{
+    background-repeat: no-repeat;
+    background-size: cover;
+    object-fit: fill;
+    height: 200px;
+    width: 200px;
+    &.img-option img{
+        object-fit: cover ;
+    }
+}

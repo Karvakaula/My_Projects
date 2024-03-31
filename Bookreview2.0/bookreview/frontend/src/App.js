@@ -52,7 +52,6 @@ function App() {
       <Routes>
           <Route exact path="/" element={Logged ? <Navigate to="/home" /> : <LoginPage onLogin={handleLogin} />}/>
           <Route exact path="/home/*" element={Logged? <Main /> : <Navigate to='/'/>}/>
-
       </Routes>
       </ThemeProvider>
     </div>

@@ -31,6 +31,7 @@ function LoginForm({ onLogin }) {
           username: username,
           password: password,
         };
+        console.log(username);
         const response = await fetch(`http://localhost:3001/users/register`, {
           method: "POST",
           headers: {
@@ -38,6 +39,7 @@ function LoginForm({ onLogin }) {
           },
           body: JSON.stringify(data),
         });
+        console.log(response)
         if (!response.ok) {
           const errorField = document.getElementById("errorfield2L");
           errorField.textContent = "Invalid register credentials";
@@ -47,7 +49,7 @@ function LoginForm({ onLogin }) {
         localStorage.setItem("username", responseBody.user.username);
         localStorage.setItem("userId", responseBody.user._id);
         localStorage.setItem("token", responseBody.accessToken);
-  
+
         setIsLoggedIn(true);
         onLogin();
         navigate("/home");
@@ -59,7 +61,6 @@ function LoginForm({ onLogin }) {
       console.error("Error during registration:", error);
       const errorField = document.getElementById("errorfield2L");
       errorField.textContent = error.message || "Registration failed";
-
     }
   };
   const handleLogin = async (username, passwd) => {
@@ -114,7 +115,6 @@ function LoginForm({ onLogin }) {
             label="Username"
             autoComplete="off"
             variant="standard"
-            
             onChange={(e) => setUsername(e.target.value)}
           />
           <TextField
@@ -140,25 +140,23 @@ function LoginForm({ onLogin }) {
         <div className="LoginForm">
           <h1>Register</h1>
           <h3 id="errorfield2L"></h3>
-          <TextField 
-          id="standard-basic" 
-          label="Username" 
-          variant="standard" 
-          onChange={(e) => setUsername(e.target.value)}
-
+          <TextField
+            id="standard-basic"
+            label="Username"
+            variant="standard"
+            onChange={(e) => setUsername(e.target.value)}
           />
-          <TextField 
-          id="standard-basic" 
-          label="Password" 
-          variant="standard" 
-          onChange={(e) => setPassword(e.target.value)}
+          <TextField
+            id="standard-basic"
+            label="Password"
+            variant="standard"
+            onChange={(e) => setPassword(e.target.value)}
           />
           <TextField
             id="standard-basic"
             label="Password repeat"
             variant="standard"
             onChange={(e) => setPassword2(e.target.value)}
-
           />
           <button className="btn" onClick={handlechange}>
             Log In

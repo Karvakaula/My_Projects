@@ -19,7 +19,6 @@ userSchema.pre('save', async function (next) {
     if (user.isModified('password')) {
       const hashedPassword = await bcrypt.hash(user.password, 10); // 10 on salt roundit
       user.password = hashedPassword;
-      console.log("hashed passwd" + user.password);
     }
     next();
   } catch (error) {

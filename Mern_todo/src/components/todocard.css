@@ -2,20 +2,26 @@
     display: flex;
     flex-direction: column;
     padding: 5px;
-    border: 2px solid beige;
-    min-width: 400px;
-    height: 80px; 
+    min-width: 300px;
+    height: 55px; 
     overflow: hidden; 
     border-radius: 15px;
-    box-shadow: 0 4px 8px 5px rgba(0, 0, 0, 0.1);
-    background-color:#fafafa;
-   
+    box-shadow: 0 0px 3px 3px #a2b1c4;
+    background-color:#B4C5DB;
     transition:all 1s ease-in;
     position: relative;
+    color: #263A47;
     &.todo-card h3{
       top:0;
       bottom:0;
       width: auto;
+    }
+    &.todo-card .timer{      
+      font-size: small;
+      position: absolute;
+      color: #263a47b6;
+      right: 10px;
+      bottom:5px;
     }
     .alert{
       color: green;
@@ -26,7 +32,6 @@
   display: flex;
     flex-direction: column;
     padding: 5px;
-    border: 2px solid beige;
     width: 50%;
     height: 300px; 
     overflow: hidden; 
@@ -43,7 +48,6 @@
   transition:all 1s ease-in-out;
 }
   .weekfromdeadline{
-    border: 2px solid rgb(203, 203, 24);
     
     background-color:#fafafa;
     .alert{
@@ -52,7 +56,6 @@
   }
   .near-deadline{
     
-    border: 2px solid beige;
     background-color:#fafafa;
     .description{
       background-color: white;
@@ -62,8 +65,7 @@
     }
   }
   .late{
-    background-color:#fafafa;
-    border:2px #C94545 solid;
+    /*background-color:#fafafa;*/
     .description{
       background-color:#fafafa;
     }
@@ -74,7 +76,6 @@
   .description {
     overflow-y: auto;
     min-height: 30px; 
-    border:2px solid #a69ee4;
     text-align: left;
     padding:5px;
     border-radius: 15px;
@@ -106,7 +107,6 @@
 
   }
   .Completed{
-    border:3px green solid;
 
     .description{
       background-color: white;
@@ -128,8 +128,8 @@
     }
   }
   @media (max-width: 768px) {
-    #todoList {
-      grid-template-columns: repeat(auto-fill, minmax(100%, 1fr));
+    .todo-card {
+      min-width: 190px;
     }
   }
   

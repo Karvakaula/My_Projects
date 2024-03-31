@@ -55,3 +55,9 @@
       text-shadow: 0 0 0px white; /* Return to original text shadow */
     }
   }
+
+  @media screen and (max-width: 600px) {
+    .review{
+      width: 300px;
+    }
+ }

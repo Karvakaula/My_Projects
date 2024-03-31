@@ -68,7 +68,7 @@ const Review = ({ review, book }) => {
   };
   return (
       <div className="review">
-        <h2 className="Username">{review.user}</h2>
+      <h2 className="Username">{review.user === localStorage.username ? "You" : review.user}</h2>
         <div className="comment">
           <p>{review.content}</p>
         </div>

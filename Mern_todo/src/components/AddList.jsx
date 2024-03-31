@@ -17,7 +17,7 @@ const AddList= ({ onAddList }) => {
           console.error('Error adding list:', error);
         });
     };
-  
+
     return (
       <div>
         <h2>Add New List</h2>
