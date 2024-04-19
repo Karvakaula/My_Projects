@@ -4,7 +4,12 @@
 
 this project was a part of future factory 2024 project, and was done in a team of 6 people. The goal was to implement features to Tukko traffic visualization app created by IOTitude for CombiTech during WimmaLab.
 
+# What i learned during this project
+
 I was assigned the role of the team lead and i mainly took care of the scheduling and project management and learned alot about management process of app development, scrum and agile. I also wanted to be a part of the development and operations processes, as this was a great opportunity to learn.
+
+During this project i worked with developing different features wich i will open more underneath.
+Also got valuable excperience on working with a bigger project, version control, teamwork, gitlab runners and security testing etc.
 
 ## Stack:
 
@@ -239,6 +244,83 @@ app.use(
 
 This seemed to work fine with postman and logout function also worked but i ran into a problem on the browser, as it didnt seem to remove the users cookie
 
+fixed this by adding
+
+```js
+   cookie: {
+      secure: true, // true because HTTPS
+      maxAge: 24 * 60 * 60 * 1000, // 1 day
+      httpOnly: true, // Prevent client-side script access
+    },
+```
+
+After these i also wanted to throw the right error messages to the users so i implemented some error handling to the frontside.
+
+also here is the user schema models and pre save method to crypt the passwd:
+
+```js
+import { ObjectId } from "mongodb";
+import { InferSchemaType, Document, Model, model, Schema } from "mongoose";
+import bcrypt from "bcrypt";
+import { Station } from "./tms_data_model";
+
+export interface User extends Document {
+  username: string;
+  email: string;
+  password: string;
+  favorites: string[];
+  validPassword: (password: string) => boolean;
+}
+interface UserMethods {
+  password: string;
+}
+type UserModel = Model<User, {}, UserMethods>;
+
+const userSchema =
+  new Schema() <
+  User >
+  {
+    username: { type: String, required: true, unique: true },
+    email: { type: String, required: true, unique: true },
+    password: { type: String, required: true },
+    favorites: [{ type: String }], // Store station IDs as strings
+  };
+
+userSchema.pre("save", async function (next) {
+  if (!this.isModified("password")) {
+    return next(); // If the password is not modified, move on
+  }
+  try {
+    // Generate a salt
+    const salt = await bcrypt.genSalt(10);
+    // Hash the password with the salt :)
+    const hashedPassword = await bcrypt.hash(this.password, salt);
+    // replace with hashed
+    this.password = hashedPassword;
+    next();
+  } catch (error) {
+    throw error;
+  }
+});
+// password comparison
+userSchema.method(
+  "validPassword",
+  async function validPassword(password: string): Promise<boolean> {
+    try {
+      console.log("compared passwd", password);
+      console.log("saved passwd", this.password);
+      const valid = await bcrypt.compare(password, this.password);
+      console.log("valid?", valid);
+      return valid;
+    } catch (error) {
+      throw error;
+    }
+  }
+);
+
+export const Usertype = model < User > ("User", userSchema, "users");
+```
+
 # HTTPS protocol
 
 Our teams operations wizard started with this and got it working on the frontend, we ran into a problem as the backend needed a https cert aswell.
@@ -261,3 +343,71 @@ httpsServer.listen(port, () => {
 
 and modified the dockerfile to copy the certs to the container.
 After this i changed the frontend api calls to be made to the https endpoint and volá it works.
+
+# Securing Api endpoints
+
+On this section i will list some actions taken to secure our applications api endpoints.
+
+## CORS (Cross-Origin Resource Sharing)
+
+CORS policies configured to restrict domains that can access the endpoints.
+
+## Security Headers
+
+Confiured security headers using Helmet library
+
+## Rate limiting
+
+configured rate limiters to limit the number pf requests client can make
+
+## HTTPS
+
+as mentioned before, configured https to encrypt data transmitted betveen clients and server to prevent unauthorized access and data interception
+
+## Input validation
+
+Used express-validatior to implement input validation on login / register inputs
+
+validators:
+
+```js
+import { body } from "express-validator";
+
+export const loginValidator = [
+  body("username", "Username cannot be empty").trim().notEmpty(),
+  body("password", "Password must be at least 12 characters long")
+    .trim()
+    .isLength({ min: 12 }),
+];
+
+export const registerValidator = [
+  body(
+    "username",
+    "Username must be between 4 and 24 characters long and start with a letter"
+  )
+    .trim()
+    .isLength({ min: 4, max: 24 })
+    .matches(/^[a-zA-Z][a-zA-Z0-9-_]{3,23}$/),
+  body("email", "Invalid email").trim().isEmail(),
+  body(
+    "password",
+    "Password must be between 12 and 30 characters long and contain at least one lowercase letter, one uppercase letter, one number, and one special character"
+  )
+    .trim()
+    .isLength({ min: 12, max: 30 })
+    .matches(
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%])[A-Za-z\d!@#$%]{12,30}$/
+    ),
+  body("confirmPassword", "Passwords do not match")
+    .trim()
+    .custom((value, { req }) => {
+      if (value !== req.body.password) {
+        throw new Error();
+      }
+      return true;
+    }),
+];
+```
+
+Some testing using Postman with invalid parameters:
+![post test](image.png)
